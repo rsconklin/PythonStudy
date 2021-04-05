@@ -1,1 +1,3 @@
-# Notes and problems from my Python studies.
+# PythonStudy
+
+Notes and problems from my Python studies.
