@@ -1,5 +1,27 @@
-## HR: Merge the Tools!. https://www.hackerrank.com/challenges/merge-the-tools/problem. Type: Strings. Date = 4/09/21.
 
+
+## HR: Find the Torsional Angle. https://www.hackerrank.com/challenges/class-2-find-the-torsional-angle/problem. Type: Classes. Date 4/09/21.
+import math
+
+class Points(object):
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+
+    def __sub__(self, no):
+        return Points(self.x - no.x, self.y - no.y, self.z - no.z)
+
+    def dot(self, no):
+        return self.x*no.x + self.y*no.y + self.z*no.z
+
+    def cross(self, no):
+        return Points(self.y*no.z - self.z*no.y, self.z*no.x - self.x*no.z, self.x*no.y - self.y*no.x)
+
+    def absolute(self):
+        return pow((self.x ** 2 + self.y ** 2 + self.z ** 2), 0.5)
+
+## HR: Merge the Tools!. https://www.hackerrank.com/challenges/merge-the-tools/problem. Type: Strings. Date = 4/09/21.
 # Note: I think there is a much more concise (but fundamentally similar) solution with OrderDict from collections.
 def merge_the_tools(string, k):
 
@@ -21,7 +43,6 @@ def merge_the_tools(string, k):
         print(ui)
 
 ## LeetCode (LC): Two Sum II. https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/. Type: Arrays. Date = 4/09/21
-
 # From LC fastest solution.
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
