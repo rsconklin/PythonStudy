@@ -1,5 +1,6 @@
 ## HR: Merge the Tools!. https://www.hackerrank.com/challenges/merge-the-tools/problem. Type: Strings. Date = 4/09/21.
 
+# Note: I think there is a much more concise (but fundamentally similar) solution with OrderDict from collections.
 def merge_the_tools(string, k):
 
     n = len(string)
