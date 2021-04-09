@@ -1,4 +1,23 @@
+## HR: Iterables and Iterators. https://www.hackerrank.com/challenges/iterables-and-iterators/problem. Type: itertools. Date 4/09/21.
+# I think combinations() is O(n), while my probability calculation is O(n). Total = O(n).
+from itertools import combinations
 
+n = int(input())
+letters = input().split()
+k = int(input())
+
+comb = list(combinations(letters, k))
+num = [1 for i in comb if 'a' in i]
+print(len(num)/len(comb))
+
+## HR: Compress the String!. https://www.hackerrank.com/challenges/compress-the-string/problem. Type: itertools. Date 4/09/21.
+# O(n)
+import itertools
+
+n = input()
+
+group = [(len(list(g)), int(k)) for k, g in itertools.groupby(n)]
+print(*group)
 
 ## HR: Find the Torsional Angle. https://www.hackerrank.com/challenges/class-2-find-the-torsional-angle/problem. Type: Classes. Date 4/09/21.
 import math
