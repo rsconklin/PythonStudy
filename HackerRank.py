@@ -82,6 +82,17 @@ class Solution:
                     return [i + 1, len(numbers) + j + 1]
 
 ## LeetCode (LC): Two Sum. https://leetcode.com/problems/two-sum/submissions/. Type: Arrays. DateTime = 4/09/21 1:02.
+# O(n)
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashTable = {}
+        for i in range(len(nums)):
+            diff = target - nums[i]
+            if diff in hashTable:
+                return [hashTable[diff], i]
+            else:
+                hashTable[nums[i]] = i
+# O(n^2)
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         for i in range(len(nums) - 1):
