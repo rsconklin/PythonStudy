@@ -1,6 +1,28 @@
-## LeetCode (LC): Two Sum. https://leetcode.com/problems/two-sum/submissions/. Type: Arrays. DateTime = 4/09/21 1:02.
+## LeetCode (LC): Two Sum II. https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/. Type: Arrays. Date = 4/09/21
 
-# Brute force. Yet to optimize.
+# Faster, because of skipping the inner loop if a duplicate in 'i' is found. But still slow compared to other users.
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        nums = numbers
+        numset = set()
+        for i in range(len(nums)):
+            if nums[i] in numset:
+                continue
+            else:
+                numset.add(nums[i])
+            for j in range(-1, -len(nums) + i, -1):
+                if nums[i] + nums[j] == target:
+                    return [i + 1, len(nums) + j + 1]
+
+# This solution is too slow. It times out on a large array with many repeated entries.
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        for i in range(len(numbers)):
+            for j in range(-1, -len(numbers) + i, -1):
+                if numbers[i] + numbers[j] == target:
+                    return [i + 1, len(numbers) + j + 1]
+
+## LeetCode (LC): Two Sum. https://leetcode.com/problems/two-sum/submissions/. Type: Arrays. DateTime = 4/09/21 1:02.
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         for i in range(len(nums) - 1):
@@ -9,7 +31,6 @@ class Solution:
                     return [i, j]
 
 ## HackerRank (HR): The Minion Game. https://www.hackerrank.com/challenges/the-minion-game/problem. Type: Strings. DateTime = 4/09/21 12:34.
-
 # O(n) version.
 def minion_game(string):
     
