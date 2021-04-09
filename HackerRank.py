@@ -1,3 +1,17 @@
+## HR: Word Order. https://www.hackerrank.com/challenges/word-order/problem. Type: collections. Date 4/09/21.
+from collections import Counter
+
+n = int(input())
+words = []
+
+for i in range(n):
+    words.append(input())
+
+count = Counter(words)
+print(len(count))
+vals = [count[k] for k in count]
+print(*vals, sep = ' ')
+
 ## HR: Iterables and Iterators. https://www.hackerrank.com/challenges/iterables-and-iterators/problem. Type: itertools. Date 4/09/21.
 # I think combinations() is O(n), while my probability calculation is O(n). Total = O(n).
 from itertools import combinations
