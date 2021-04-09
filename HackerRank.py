@@ -1,18 +1,12 @@
 ## LeetCode (LC): Two Sum. https://leetcode.com/problems/two-sum/submissions/. Type: Arrays. DateTime = 4/09/21 1:02.
 
-# Brute force. Yet to optimize. Attempted list filtration at the start.
+# Brute force. Yet to optimize.
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        numsfilt = nums #[x for x in nums if x <= target]
-        for i in range(len(numsfilt) - 1):
-            for j in range(i + 1, len(numsfilt)):
-                if numsfilt[i] + numsfilt[j] == target:
-                    print(numsfilt[i], numsfilt[j])
-                    i1 = nums.index(numsfilt[i])
-                    i2 = nums.index(numsfilt[j], i1 +1, len(nums))
-                    return [i1, i2]
-                else:
-                    continue
+        for i in range(len(nums) - 1):
+            for j in range(i + 1, len(nums)):
+                if nums[i] + nums[j] == target:
+                    return [i, j]
 
 ## HackerRank (HR): The Minion Game. https://www.hackerrank.com/challenges/the-minion-game/problem. Type: Strings. DateTime = 4/09/21 12:34.
 
