@@ -1,3 +1,31 @@
+## HR: Piling Up!. https://www.hackerrank.com/challenges/piling-up/problem. Type: Collections. 4/10/21.
+from collections import deque
+
+for i in range(int(input())):
+    
+    n = int(input())
+    nums = deque(map(int, input().split()))
+    
+    if nums[0] >= nums[-1]:
+        cube = nums.popleft()
+    else:
+        cube = nums.pop()
+    
+    while len(nums):
+        if nums[-1] <= nums[0] <= cube:
+            cube = nums.popleft()
+        elif nums[0] < nums[-1] <= cube:
+            cube = nums.pop()
+        else:
+            possible = 0
+            break
+        possible = 1
+    
+    if possible:
+        print('Yes')
+    else:
+        print('No')
+
 ## HR: Company Logo. https://www.hackerrank.com/challenges/most-commons/problem. Type: collections. Date 4/09/21.
 # Counter is O(n) while sort is O(n log n). Overall O(n log n).
 from collections import Counter
