@@ -1,4 +1,42 @@
+## HR: Classes: Dealing with Complex Numbers. https://www.hackerrank.com/challenges/class-1-dealing-with-complex-numbers/problem. Type: Classes. 4/10/21.
+import math
+
+class Complex(object):
+    
+    def __init__(self, real, imaginary):
+        self.real = real
+        self.imaginary = imaginary
+        
+    def __add__(self, no):
+        return Complex(self.real + no.real, self.imaginary + no.imaginary)
+    
+    def __sub__(self, no):
+        return Complex(self.real - no.real, self.imaginary - no.imaginary)
+    
+    def __mul__(self, no):
+        return Complex(self.real*no.real - self.imaginary*no.imaginary, self.real*no.imaginary + self.imaginary*no.real)
+    
+    def __truediv__(self, no):
+        try:
+            return self.__mul__(Complex(no.real/(no.mod().real)**2, -no.imaginary/(no.mod().real)**2))
+        except ZeroDivisionError as e:
+            print(e)
+            return None
+
+    def mod(self):
+        return Complex(math.sqrt(self.real**2 + self.imaginary**2), 0)
+
+## HR: Time Delta. https://www.hackerrank.com/challenges/python-time-delta/problem. Type: Date and Time. 4/10/21.
+from datetime import datetime as dt
+
+format = '%a %d %b %Y %H:%M:%S %z'
+for i in range(int(input())):
+    time1 = dt.strptime(input(), format)
+    time2 = dt.strptime(input(), format)
+    print(int(abs((time1 - time2).total_seconds())))
+
 ## HR: Piling Up!. https://www.hackerrank.com/challenges/piling-up/problem. Type: Collections. 4/10/21.
+# O(n).
 from collections import deque
 
 for i in range(int(input())):
