@@ -1,3 +1,11 @@
+## HR: Company Logo. https://www.hackerrank.com/challenges/most-commons/problem. Type: collections. Date 4/09/21.
+# Counter is O(n) while sort is O(n log n). Overall O(n log n).
+from collections import Counter
+
+count = Counter(input()).items()
+for l, n in sorted(count, key = lambda count: (-count[1], count[0]))[:3]:
+    print(l, n)
+
 ## HR: Word Order. https://www.hackerrank.com/challenges/word-order/problem. Type: collections. Date 4/09/21.
 from collections import Counter
 
