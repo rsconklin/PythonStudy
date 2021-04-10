@@ -1,3 +1,36 @@
+## HR: Drawing Book. https://www.hackerrank.com/challenges/drawing-book/problem. Type: Algorithms, Implementation. Date: 4/10/21. Time: 00:37:59
+# Original solution. I'm sorry, world. Not enough finesse.
+def pageCount(n, p):
+    diff = n - p
+    if n%2 == 0:
+        if p%2 == 0 and p//2 <= diff//2:
+            return p//2
+        elif p%2 != 0 and p//2 <= (diff + 1)//2:
+            return p//2
+        else:
+            if p%2 == 0:
+                return diff//2 
+            else:
+                return (diff + 1)//2
+    else:
+        if p == 1:
+            return 0
+        elif p//2 <= diff//2:
+            return p//2
+        elif p == n or p == n - 1:
+            return 0
+        else:
+            return diff//2
+
+## HR: Sales by Match. https://www.hackerrank.com/challenges/sock-merchant/problem. Type: Algorithms, Implementation. Date: 4/10/21. Time: 00:01:30.
+# O(n).
+def sockMerchant(n, ar):
+    count = Counter(ar)
+    pairs = 0
+    for k in count:
+        pairs += count[k]//2
+    return pairs
+
 ## HR: Default Arguments. https://www.hackerrank.com/challenges/default-arguments/problem. Type: Debugging. Date: 4/10/21.
 # It is clearer to reset the constructor. Apparently when no argument is given, the default argument class is still called,
 # but with the value from the previous call stored.
