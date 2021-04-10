@@ -1,4 +1,18 @@
-## HR: Classes: Dealing with Complex Numbers. https://www.hackerrank.com/challenges/class-1-dealing-with-complex-numbers/problem. Type: Classes. 4/10/21.
+## HR: Athlete Sort. https://www.hackerrank.com/challenges/python-sort-sort/problem. Type: Built-Ins. Date: 4/10/21.
+n, m = map(int, input().split())
+
+athletes = []
+for i in range(n):
+    athletes.append(list(map(int, input().split())))
+
+k = int(input())
+
+athletes_sorted = sorted(athletes, key=lambda athletes: athletes[k])
+
+for i in range(n):
+    print(*athletes_sorted[i])
+
+## HR: Classes: Dealing with Complex Numbers. https://www.hackerrank.com/challenges/class-1-dealing-with-complex-numbers/problem. Type: Classes. Date: 4/10/21.
 import math
 
 class Complex(object):
@@ -26,7 +40,7 @@ class Complex(object):
     def mod(self):
         return Complex(math.sqrt(self.real**2 + self.imaginary**2), 0)
 
-## HR: Time Delta. https://www.hackerrank.com/challenges/python-time-delta/problem. Type: Date and Time. 4/10/21.
+## HR: Time Delta. https://www.hackerrank.com/challenges/python-time-delta/problem. Type: Date and Time. Date: 4/10/21.
 from datetime import datetime as dt
 
 format = '%a %d %b %Y %H:%M:%S %z'
@@ -35,7 +49,7 @@ for i in range(int(input())):
     time2 = dt.strptime(input(), format)
     print(int(abs((time1 - time2).total_seconds())))
 
-## HR: Piling Up!. https://www.hackerrank.com/challenges/piling-up/problem. Type: Collections. 4/10/21.
+## HR: Piling Up!. https://www.hackerrank.com/challenges/piling-up/problem. Type: Collections. Date: 4/10/21.
 # O(n).
 from collections import deque
 
@@ -64,7 +78,7 @@ for i in range(int(input())):
     else:
         print('No')
 
-## HR: Company Logo. https://www.hackerrank.com/challenges/most-commons/problem. Type: collections. Date 4/09/21.
+## HR: Company Logo. https://www.hackerrank.com/challenges/most-commons/problem. Type: collections. Date: 4/09/21.
 # Counter is O(n) while sort is O(n log n). Overall O(n log n).
 from collections import Counter
 
@@ -72,7 +86,7 @@ count = Counter(input()).items()
 for l, n in sorted(count, key = lambda count: (-count[1], count[0]))[:3]:
     print(l, n)
 
-## HR: Word Order. https://www.hackerrank.com/challenges/word-order/problem. Type: collections. Date 4/09/21.
+## HR: Word Order. https://www.hackerrank.com/challenges/word-order/problem. Type: collections. Date: 4/09/21.
 from collections import Counter
 
 n = int(input())
@@ -86,7 +100,7 @@ print(len(count))
 vals = [count[k] for k in count]
 print(*vals, sep = ' ')
 
-## HR: Iterables and Iterators. https://www.hackerrank.com/challenges/iterables-and-iterators/problem. Type: itertools. Date 4/09/21.
+## HR: Iterables and Iterators. https://www.hackerrank.com/challenges/iterables-and-iterators/problem. Type: itertools. Date: 4/09/21.
 # I think combinations() is O(n), while my probability calculation is O(n). Total = O(n).
 from itertools import combinations
 
@@ -98,7 +112,7 @@ comb = list(combinations(letters, k))
 num = [1 for i in comb if 'a' in i]
 print(len(num)/len(comb))
 
-## HR: Compress the String!. https://www.hackerrank.com/challenges/compress-the-string/problem. Type: itertools. Date 4/09/21.
+## HR: Compress the String!. https://www.hackerrank.com/challenges/compress-the-string/problem. Type: itertools. Date: 4/09/21.
 # O(n)
 import itertools
 
@@ -107,7 +121,7 @@ n = input()
 group = [(len(list(g)), int(k)) for k, g in itertools.groupby(n)]
 print(*group)
 
-## HR: Find the Torsional Angle. https://www.hackerrank.com/challenges/class-2-find-the-torsional-angle/problem. Type: Classes. Date 4/09/21.
+## HR: Find the Torsional Angle. https://www.hackerrank.com/challenges/class-2-find-the-torsional-angle/problem. Type: Classes. Date: 4/09/21.
 import math
 
 class Points(object):
@@ -128,7 +142,7 @@ class Points(object):
     def absolute(self):
         return pow((self.x ** 2 + self.y ** 2 + self.z ** 2), 0.5)
 
-## HR: Merge the Tools!. https://www.hackerrank.com/challenges/merge-the-tools/problem. Type: Strings. Date = 4/09/21.
+## HR: Merge the Tools!. https://www.hackerrank.com/challenges/merge-the-tools/problem. Type: Strings. Date: = 4/09/21.
 # Note: I think there is a much more concise (but fundamentally similar) solution with OrderDict from collections.
 def merge_the_tools(string, k):
 
@@ -149,7 +163,7 @@ def merge_the_tools(string, k):
                 uset.add(udup[j])
         print(ui)
 
-## LeetCode (LC): Two Sum II. https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/. Type: Arrays. Date = 4/09/21
+## LeetCode (LC): Two Sum II. https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/. Type: Arrays. Date: = 4/09/21
 # From LC fastest solution.
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
