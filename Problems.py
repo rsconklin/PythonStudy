@@ -1,3 +1,33 @@
+## HR: Default Arguments. https://www.hackerrank.com/challenges/default-arguments/problem. Type: Debugging. Date: 4/10/21.
+def print_from_stream(n, stream=EvenStream()):
+    if stream.current%2 == 0:
+        stream.current = 0
+    for _ in range(n):
+        print(stream.get_next())
+
+## HR: Words Score. https://www.hackerrank.com/challenges/words-score/problem. Type: Debugging. Date: 4/10/21.
+# The bug to fix was ++score -> score += 1
+def is_vowel(letter):
+    return letter in ['a', 'e', 'i', 'o', 'u', 'y']
+
+def score_words(words):
+    score = 0
+    for word in words:
+        num_vowels = 0
+        for letter in word:
+            if is_vowel(letter):
+                num_vowels += 1
+        if num_vowels % 2 == 0:
+            score += 2
+        else:
+            score += 1
+    return score
+
+
+n = int(input())
+words = input().split()
+print(score_words(words))
+
 ## HR: Reduce Function. https://www.hackerrank.com/challenges/reduce-function/problem. Type: Python Functionals. Date: 4/10/21.
 from fractions import Fraction
 from functools import reduce
