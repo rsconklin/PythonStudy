@@ -1,4 +1,12 @@
 ## HR: Default Arguments. https://www.hackerrank.com/challenges/default-arguments/problem. Type: Debugging. Date: 4/10/21.
+# It is clearer to reset the constructor. Apparently when no argument is given, the default argument class is still called,
+# but with the value from the previous call stored.
+def print_from_stream(n, stream=EvenStream()):
+    stream.__init__()
+    for _ in range(n):
+        print(stream.get_next())
+
+# My original solution.
 def print_from_stream(n, stream=EvenStream()):
     if stream.current%2 == 0:
         stream.current = 0
