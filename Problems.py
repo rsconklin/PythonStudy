@@ -1,3 +1,42 @@
+## HR: Validating Email Addresses with a Filter. https://www.hackerrank.com/challenges/validate-list-of-email-address-with-filter/problem. Type: Python Functionals. Date: 4/10/21.
+# O(n).
+def fun(s):
+    
+    uwlen = len(s.split('@'))
+    if uwlen != 2:
+        return None
+    else:
+        username, website_and_ext = s.split('@')
+    
+    welen = len(website_and_ext.split('.'))
+    if welen != 2:
+        return None
+    else:
+        website, extension = website_and_ext.split('.')
+    
+    usefilt = ''.join([c for c in username if c.isalnum() or c in ('_', '-')])
+    webfilt = ''.join([c for c in website if c.isalnum()])
+    extfilt = ''.join([c for c in extension if c.isalpha()])
+    
+    uselen = len(username)
+    weblen = len(website)
+    extlen = len(extension)
+    
+    if uselen > 0 and weblen > 0 and 0 < extlen <= 3:
+        if usefilt == username and webfilt == website and extfilt == extension:
+            return s
+        else:
+            pass
+    else:
+        pass
+
+## HR: ginortS. https://www.hackerrank.com/challenges/ginorts/problem. Type: Built-Ins. Date: 4/10/21.
+s = input()
+
+ginorts = sorted(s, key=lambda s: (s.isdigit() and int(s)%2 == 0, s.isdigit() and int(s)%2 != 0, s.isupper(), s.islower(), s))
+
+print(*ginorts, sep='')
+
 ## HR: Athlete Sort. https://www.hackerrank.com/challenges/python-sort-sort/problem. Type: Built-Ins. Date: 4/10/21.
 n, m = map(int, input().split())
 
