@@ -1,3 +1,11 @@
+## HR: Reduce Function. https://www.hackerrank.com/challenges/reduce-function/problem. Type: Python Functionals. Date: 4/10/21.
+from fractions import Fraction
+from functools import reduce
+
+def product(fracs):
+    t = Fraction(reduce(lambda x, y: x*y, fracs))
+    return t.numerator, t.denominator
+
 ## HR: Validating Email Addresses with a Filter. https://www.hackerrank.com/challenges/validate-list-of-email-address-with-filter/problem. Type: Python Functionals. Date: 4/10/21.
 # O(n).
 def fun(s):
