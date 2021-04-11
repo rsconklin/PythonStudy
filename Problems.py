@@ -1,4 +1,13 @@
 ## HR: Drawing Book. https://www.hackerrank.com/challenges/drawing-book/problem. Type: Algorithms, Implementation. Date: 4/10/21. Time: 00:37:59
+# Inspired by HR discussion:
+n = int(input())
+p = int(input())
+
+if n%2 == 0:
+    print(int(min(p/2, (n - p + 1)/2)))
+else:
+    print(int(min(p/2, (n - p)/2)))
+
 # Original solution. I'm sorry, world. Not enough finesse.
 def pageCount(n, p):
     diff = n - p
