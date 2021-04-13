@@ -1,4 +1,17 @@
-## HR: Maximum Element
+## HR: Maximum Element. https://www.hackerrank.com/challenges/maximum-element/problem. Type: Stacks. Date: 4/13/21.
+# Faster solution: O(n).
+n = int(input())
+stack = [0]
+
+for i in range(n):
+    op = list(map(int, input().split()))
+    if op[0] == 1:
+        stack.append(max(op[1], stack[-1]))
+    elif op[0] == 2:
+        stack.pop()
+    else:
+        print(stack[-1])
+
 # My original solution. This is too slow and times out on HR. Others in discussion suggest changing
 # the stack order (not according to the queries) with a faster max lookup.
 def getMax(operations):
