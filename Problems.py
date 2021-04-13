@@ -1,3 +1,17 @@
+## HR: Matrix Script. https://www.hackerrank.com/challenges/matrix-script/problem. Type: RegEx. Date: 4/13/21.
+import re
+
+n, m = map(int, input().split())
+code = []
+
+for i in range(n):
+    code.append(input())
+
+codeline = [code[i][j] for j in range(m) for i in range(n)]
+matrix = ''.join(codeline)
+
+print(re.sub(r'\b\W+\b', ' ', matrix))
+
 ## HR: Drawing Book. https://www.hackerrank.com/challenges/drawing-book/problem. Type: Algorithms, Implementation. Date: 4/10/21. Time: 00:37:59
 # Inspired by HR discussion:
 n = int(input())
