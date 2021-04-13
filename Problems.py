@@ -1,3 +1,31 @@
+## HR: Validating and Parsing Email Addresses. https://www.hackerrank.com/challenges/validating-named-email-addresses/problem. Type: RegEx. Date: 4/13/21.
+import re
+
+n = int(input())
+
+p = re.compile(r'^<[a-zA-Z](\w|[.]|[-])+@[a-zA-Z]+[.][a-zA-Z]{1,3}>')
+
+for i in range(n):
+    name, email = input().split()
+    m = p.match(email)
+    if m:
+        print(name, email)
+    else:
+        continue
+
+## HR: Group(), Groups(), GroupDict(). https://www.hackerrank.com/challenges/re-group-groups/problem. Type: RegEx. Date: 4/13/21.
+import re
+
+s = input()
+
+p = re.compile(r'([a-zA-Z0-9])\1')
+m = p.search(s)
+
+if m:
+    print(s[m.start()])
+else:
+    print('-1')
+
 ## HR: Re.split(). https://www.hackerrank.com/challenges/re-split/problem. Type: RegEx. Date: 4/13/21.
 regex_pattern = r"[.]|[,]"
 
