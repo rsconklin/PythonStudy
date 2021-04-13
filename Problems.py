@@ -1,3 +1,45 @@
+## HR: Maximum Element
+# My original solution. This is too slow and times out on HR. Others in discussion suggest changing
+# the stack order (not according to the queries) with a faster max lookup.
+def getMax(operations):
+    from heapq import heappush, heappop, heapify
+    stack = []
+    maxes = []
+    maxheap = []
+    heapify(maxheap)
+    for op in operations:
+        if op[0] == '1':
+            o = list(map(int, op.split()))
+            stack.append(o[1])
+            heappush(maxheap, -o[1])
+        elif op[0] == '2':
+            stack.pop()
+        else:
+            while -maxheap[0] not in stack:
+                heappop(maxheap)
+            maxes.append(-maxheap[0])
+    return maxes
+
+## HR: Jesse and Cookies. https://www.hackerrank.com/challenges/jesse-and-cookies/problem. Type: Heap. Date: 4/13/21.
+def cookies(k, A):
+    
+    from heapq import heapify, heappop, heappush
+
+    heapify(A)
+    count = 0
+    heap = A
+
+    while heap[0] < k and count < n - 1:
+        c1 = heappop(heap)
+        c2 = heappop(heap)
+        heappush(heap, c1 + 2*c2)
+        count += 1
+
+    if count == n - 1 and heap[0] < k:
+        return -1
+    else:
+        return count
+
 ## HR: QHEAP1. https://www.hackerrank.com/challenges/qheap1/problem. Type: Heap. Date: 4/13/21.
 # There are n commands, so this is at least O(n). Insertions and removals from sets are O(1), 
 # I think, so the most time-consuming command is finding the minimum. When a heap is available,
