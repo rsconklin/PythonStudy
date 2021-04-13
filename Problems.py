@@ -1,3 +1,39 @@
+## HR: Re.split(). https://www.hackerrank.com/challenges/re-split/problem. Type: RegEx. Date: 4/13/21.
+regex_pattern = r"[.]|[,]"
+
+## HR: Detect Floating Point Number. https://www.hackerrank.com/challenges/introduction-to-regex/problem. Type: RegEx. Date: 4/13/21.
+import re
+
+p = re.compile('[+-]?\d*[.]\d+')
+
+n = int(input())
+
+for i in range(n):
+    try:
+        sequence = input()
+        float(sequence)
+        m = p.match(sequence)
+        if m:
+            print('True')
+        else:
+            print('False')
+    except:
+        print('False')
+        continue
+
+## HR: Incorrect Regex. https://www.hackerrank.com/challenges/incorrect-regex/problem. Type: RegEx. Date: 4/13/21.
+import re
+
+n = int(input())
+
+for i in range(n):
+    try:
+        re.compile(input())
+        print('True')
+    except:
+        print('False')
+        continue
+
 ## HR: Matrix Script. https://www.hackerrank.com/challenges/matrix-script/problem. Type: RegEx. Date: 4/13/21.
 import re
 
