@@ -1,3 +1,34 @@
+## HR: Dynamic Array. https://www.hackerrank.com/challenges/dynamic-array/problem. Type: Arrays. Date: 4/13/21.
+arr = [[] for i in range(n)]
+lastAnswer = 0
+res = []
+for i in range(q):
+    idx = (queries[i][1] ^ lastAnswer)%n
+    if queries[i][0] == 1:
+        arr[idx].append(queries[i][2])
+    else:
+        ydex = queries[i][2] % len(arr[idx])
+        lastAnswer = arr[idx][ydex]
+        res.append(lastAnswer)
+return res
+
+## HR: 2D Array - DS: https://www.hackerrank.com/challenges/2d-array/problem. Type: Arrays. Date: 4/13/21.
+hours = []
+for i in range(4):
+    for j in range(4):
+        top = sum(arr[i][j:j+3])
+        mid = arr[i+1][j+1]
+        bot = sum(arr[i+2][j:j+3])
+        hours.append(top + mid + bot)
+return max(hours)
+
+## HR: Arrays - DS: https://www.hackerrank.com/challenges/arrays-ds/problem. Type: Arrays. Date: 4/13/21.
+n = int(input())
+
+l = list(map(int, input().split()))
+l.reverse()
+print(*l)
+
 ## HR: Validating and Parsing Email Addresses. https://www.hackerrank.com/challenges/validating-named-email-addresses/problem. Type: RegEx. Date: 4/13/21.
 import re
 
