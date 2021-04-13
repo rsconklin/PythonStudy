@@ -1,3 +1,28 @@
+## HR: Equal Stacks. https://www.hackerrank.com/challenges/equal-stacks/problem. Type: Stacks. Date: 4/13/21.
+from collections import deque
+
+n1, n2, n3 = list(map(int, input().split()))
+
+s1 = deque(map(int, input().split()))
+s2 = deque(map(int, input().split()))
+s3 = deque(map(int, input().split()))
+
+h1 = sum(s1)
+h2 = sum(s2)
+h3 = sum(s3)
+
+while h1 != h2 or h1 != h3:
+    if h1 > h2:
+        h1 -= s1.popleft()
+    elif h1 < h2:
+        h2 -= s2.popleft()
+    if h1 > h3:
+        h1 -= s1.popleft()
+    elif h1 < h3:
+        h3 -= s3.popleft()
+        
+print(h1)
+
 ## HR: Maximum Element. https://www.hackerrank.com/challenges/maximum-element/problem. Type: Stacks. Date: 4/13/21.
 # Faster solution: O(n).
 n = int(input())
