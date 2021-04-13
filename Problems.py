@@ -1,3 +1,31 @@
+## HR: QHEAP1. https://www.hackerrank.com/challenges/qheap1/problem. Type: Heap. Date: 4/13/21.
+# There are n commands, so this is at least O(n). Insertions and removals from sets are O(1), 
+# I think, so the most time-consuming command is finding the minimum. When a heap is available,
+# the minimum is heap[0] so this is O(1), but I'm not sure what it is if elements are popped
+# and the heap needs to be re-heapified. 
+from heapq import heappush, heappop
+
+n = int(input())
+
+heap = []
+s = set()
+
+for i in range(n):
+    q = list(map(int, input().split()))
+    if q[0] == 1:
+        heappush(heap, q[1])
+        s.add(q[1])
+    elif q[0] == 2:
+        s.remove(q[1])
+    else:
+        while heap[0] not in s:
+            heappop(heap)
+        print(heap[0])
+
+## HR: Left Rotation. https://www.hackerrank.com/challenges/array-left-rotation/problem. Type: Arrays. Date: 4/13/21.
+def rotateLeft(d, arr):
+    return [arr[(i+d)%n] for i in range(n)]
+
 ## HR: Dynamic Array. https://www.hackerrank.com/challenges/dynamic-array/problem. Type: Arrays. Date: 4/13/21.
 arr = [[] for i in range(n)]
 lastAnswer = 0
