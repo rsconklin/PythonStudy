@@ -1,3 +1,34 @@
+## HR: Compare two linked lists. https://www.hackerrank.com/challenges/compare-two-linked-lists/problem. Type: Linked Lists. Date: 4/14/21.
+# A bit more concise, using exclusive or.
+def compare_lists(llist1, llist2):
+    node1 = llist1
+    node2 = llist2
+    while node1 and node2:
+        if node1.data == node2.data:
+            node1 = node1.next
+            node2 = node2.next
+            if bool(node1) ^ bool(node2):
+                return 0
+        else:
+            return 0
+    return 1
+
+# Original.
+def compare_lists(llist1, llist2):
+    node1 = llist1
+    node2 = llist2
+    while node1 and node2:
+        if node1.data == node2.data:
+            node1 = node1.next
+            node2 = node2.next
+            if (node1 is None) and (node2 is not None):
+                return 0
+            elif (node1 is not None) and (node2 is None):
+                return 0
+        else:
+            return 0
+    return 1
+
 ## HR: Reverse a Linked List. https://www.hackerrank.com/challenges/reverse-a-linked-list/problem. Type: Linked Lists. Date: 4/14/21.
 # O(n). I get the list of data values from the original linked list, then construct a new linked list from this, in reverse.
 def reverse(head):
