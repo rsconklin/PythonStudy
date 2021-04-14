@@ -1,3 +1,66 @@
+## HR: Print in Reverse. https://www.hackerrank.com/challenges/print-the-elements-of-a-linked-list-in-reverse/problem. Type: Linked Lists. Date: 4/14/21.
+# O(n). Could be more efficient by avoiding reverse(). Could use deque.
+def reversePrint(head):
+    if not head:
+        pass
+    else:
+        llist = []
+        node = head
+        while node:
+            llist.append(node.data)
+            node = node.next
+        llist.reverse()
+        print(*llist, sep='\n')
+
+## HR: Delete a Node. https://www.hackerrank.com/challenges/delete-a-node-from-a-linked-list/problem. Type: Linked Lists. Date: 4/14/21.
+# O(n^2)
+def deleteNode(head, position):
+    if position == 0:
+        post = head.next
+        del(head)
+        return post
+    else:
+        node = head
+        for i in range(position-1):
+            node = node.next
+        pre = node
+        delnode = node.next
+        post = delnode.next
+        pre.next = post
+        del(delnode)
+        return head
+
+## HR: Insert a node at a specific position in a Linked List. 
+## https://www.hackerrank.com/challenges/insert-a-node-at-a-specific-position-in-a-linked-list/problem. Type: Linked Lists. Date: 4/14/21. 
+def insertNodeAtPosition(head, data, position):
+    if not head:
+        return SinglyLinkedListNode(data)
+    elif position == 0:
+        newhead = SinglyLinkedListNode(data)
+        newhead.next = head
+        return newhead
+    else:
+        node = head
+        for i in range(position-1):
+            node = node.next
+        pre = node
+        post = node.next
+        newnode = SinglyLinkedListNode(data)
+        pre.next = newnode
+        newnode.next = post
+        return head
+
+## HR: Insert a node at the head of a Linked List. https://www.hackerrank.com/challenges/insert-a-node-at-the-head-of-a-linked-list/problem. Type: Linked Lists. Date: 4/14/21.
+def insertNodeAtHead(llist, data):
+    if not llist:
+        head = SinglyLinkedListNode(data)
+        return head
+    else:
+        oldhead = llist
+        newhead = SinglyLinkedListNode(data)
+        newhead.next = oldhead
+        return newhead
+
 ## HR: Insert a Node at the Tail of a Linked List. https://www.hackerrank.com/challenges/insert-a-node-at-the-tail-of-a-linked-list/problem. Type: Linked Lists. Date: 4/14/21.
 def insertNodeAtTail(head, data):
     if not head:
