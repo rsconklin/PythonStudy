@@ -1,3 +1,19 @@
+## HR: Reverse a Linked List. https://www.hackerrank.com/challenges/reverse-a-linked-list/problem. Type: Linked Lists. Date: 4/14/21.
+# O(n). I get the list of data values from the original linked list, then construct a new linked list from this, in reverse.
+def reverse(head):
+    if not head:
+        return Null
+    else:
+        nodevals = []
+        node = head
+        while node:
+            nodevals.append(node.data)
+            node = node.next
+    myllist = SinglyLinkedList()
+    for i in range(len(nodevals)):
+        myllist.insert_node(nodevals[-i - 1])
+    return myllist.head
+
 ## HR: Print in Reverse. https://www.hackerrank.com/challenges/print-the-elements-of-a-linked-list-in-reverse/problem. Type: Linked Lists. Date: 4/14/21.
 # O(n). Could be more efficient by avoiding reverse(). Could use deque.
 def reversePrint(head):
