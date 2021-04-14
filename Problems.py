@@ -1,5 +1,5 @@
 ## HR: Compare two linked lists. https://www.hackerrank.com/challenges/compare-two-linked-lists/problem. Type: Linked Lists. Date: 4/14/21.
-# A bit more concise, using exclusive or.
+# O(n). A bit more concise, using exclusive or.
 def compare_lists(llist1, llist2):
     node1 = llist1
     node2 = llist2
