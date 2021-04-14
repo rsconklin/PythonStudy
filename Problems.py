@@ -1,3 +1,125 @@
+## HR: Find Merge Point of Two Lists. https://www.hackerrank.com/challenges/find-the-merge-point-of-two-joined-linked-lists/problem. Type: Linked Lists. Date: 4/14/21.
+# I think this is O(n)? Everything is O(n) except there is a search in each set - maybe the scaling of a set search is O(1)?
+def findMergeNode(head1, head2):
+    if head1 == head2:
+        return head1.data
+    node1 = head1
+    node2 = head2
+    ns1 = set()
+    ns2 = set()
+    while node1 != None or node2 != None:
+        pre1 = node1
+        pre2 = node2
+        if node1 != None:
+            ns1.add(node1)
+            node1 = node1.next
+        if node2 != None:
+            ns2.add(node2)
+            node2 = node2.next
+        if pre1 in ns2:
+            return pre1.data
+        if pre2 in ns1:
+            return pre2.data
+    return None
+
+## HR: Delete Duplicate-Value Nodes from a Sorted Linked List. https://www.hackerrank.com/challenges/delete-duplicate-value-nodes-from-a-sorted-linked-list/problem
+## Type: Linked Lists. Date: 4/14/21.
+# O(n)
+def removeDuplicates(head):
+    node = head
+    vals = [node.data]
+    if head is None:
+        return None
+    while node:
+        if node.data != vals[-1]:
+            vals.append(node.data)
+        else:
+            pass
+        node = node.next
+    myll = SinglyLinkedList()
+    for v in vals:
+        myll.insert_node(v)
+    return myll.head
+
+## HR: Get Node Value. https://www.hackerrank.com/challenges/get-the-value-of-the-node-at-a-specific-position-from-the-tail/problem. Type: Linked Lists. Date: 4/14/21.
+# O(n)
+def getNode(head, positionFromTail):
+    vals = []
+    while head:
+        vals.append(head.data)
+        head = head.next
+    return vals[len(vals)-1-positionFromTail]
+
+## HR: Merge Two Sorted Linked Lists. https://www.hackerrank.com/challenges/merge-two-sorted-linked-lists/problem. Type: Linked Lists. Date: 4/14/21.
+# Second attempt. Success.
+def mergeLists(head1, head2):
+    if head1 is None:
+        return head2
+    if head2 is None:
+        return head1
+    myll = SinglyLinkedList()
+    node1 = head1
+    node2 = head2
+    while node1 != None or node2 != None:
+        if node1 is None:
+            myll.insert_node(node2.data)
+            node2 = node2.next
+            continue
+        elif node2 is None:
+            myll.insert_node(node1.data)
+            node1 = node1.next
+            continue
+        else:
+            if node1.data <= node2.data:
+                myll.insert_node(node1.data)
+                node1 = node1.next
+            else:
+                myll.insert_node(node2.data)
+                node2 = node2.next
+    return myll.head
+
+# First attempt. Times out, and is horrendous. Probably bugged, too.
+def mergeLists(head1, head2):
+    if head1 is None:
+        return head2
+    if head2 is None:
+        return head1
+    node1 = head1
+    node2 = head2
+    if head1.data <= head2.data:
+        head = head1
+    else:
+        head = head2
+    while node1 and node2:
+        node1next = node1.next
+        node2next = node2.next
+        if (node1next is not None) and (node2next is not None):
+            if node1.data < node2.data and node2.data < node1next.data:
+                node1.next = node2
+                node1 = node1next
+            elif node2.data < node1.data and node1.data < node2next.data:
+                node2.next = node1
+                node2 = node2next
+        elif (node1next is None) and (node2next is not None):
+            if node1.data <= node2.data:
+                node1.next = node2
+                return head
+            else:
+                node2 = node2next
+        elif (node1next is not None) and (node2next is None):
+            if node2.data <= node1.data:
+                node2.next = node1
+                return head
+            else:
+                node1 = node1next
+        else:
+            if node1.data <= node2.data:
+                node1.next = node2
+                return head
+            else:
+                node2.next = node1
+                return head
+
 ## HR: Compare two linked lists. https://www.hackerrank.com/challenges/compare-two-linked-lists/problem. Type: Linked Lists. Date: 4/14/21.
 # O(n). A bit more concise, using exclusive or.
 def compare_lists(llist1, llist2):
