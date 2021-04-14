@@ -1,3 +1,25 @@
+## HR: Insert a Node at the Tail of a Linked List. https://www.hackerrank.com/challenges/insert-a-node-at-the-tail-of-a-linked-list/problem. Type: Linked Lists. Date: 4/14/21.
+def insertNodeAtTail(head, data):
+    if not head:
+        head = SinglyLinkedListNode(data)
+        return head
+    node = head
+    while node.next:
+        node = node.next
+    node.next = SinglyLinkedListNode(data)
+    return head
+
+## HR: Print the Elements of a Linked List. https://www.hackerrank.com/challenges/print-the-elements-of-a-linked-list/problem. Type: Linked Lists. Date: 4/14/21.
+def printLinkedList(head):
+    node = head
+    while True:
+        print(node.data)
+        node = node.next
+        try:
+            node.data
+        except:
+            break
+
 ## HR: Equal Stacks. https://www.hackerrank.com/challenges/equal-stacks/problem. Type: Stacks. Date: 4/13/21.
 from collections import deque
 
