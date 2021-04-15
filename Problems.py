@@ -1,3 +1,12 @@
+## HR: Tree: Postorder Traversal. https://www.hackerrank.com/challenges/tree-postorder-traversal/problem. Type: Trees. Date: 4/15/21.
+# My first successful attempt: Recursive.
+def postOrder(root):
+    if root.left:
+        postOrder(root.left)
+    if root.right:
+        postOrder(root.right)
+    print(root.info, end=' ')
+
 ## HR: Tree: Preorder Traversal. https://www.hackerrank.com/challenges/tree-preorder-traversal/problem. Type: Trees. Date: 4/15/21.
 # The standard recursive version:
 def preOrder(root):
