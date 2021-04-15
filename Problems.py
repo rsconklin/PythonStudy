@@ -1,3 +1,11 @@
+## HR: Tree: Inorder Traversal. https://www.hackerrank.com/challenges/tree-inorder-traversal/problem. Type: Trees. Date: 4/15/21.
+# Motivated by HR discussion:
+def inOrder(root):
+    if root:
+        inOrder(root.left)
+        print(root.info, end=' ')
+        inOrder(root.right)
+
 ## HR: Tree: Postorder Traversal. https://www.hackerrank.com/challenges/tree-postorder-traversal/problem. Type: Trees. Date: 4/15/21.
 # My first successful attempt: Recursive.
 def postOrder(root):
