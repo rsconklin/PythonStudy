@@ -1,3 +1,44 @@
+## HR: Reverse a Doubly Linked List. https://www.hackerrank.com/challenges/reverse-a-doubly-linked-list/problem. Type: Linked Lists. Date: 4/14/21.
+# O(n).
+def reverse(head):
+    vals = []
+    while head:
+        vals.append(head.data)
+        head = head.next
+    myll = DoublyLinkedList()
+    for i in range(len(vals)):
+        myll.insert_node(vals[len(vals)-i-1])
+    return myll.head
+
+## HR: Inserting a Node into a Sorted Doubly Linked List. https://www.hackerrank.com/challenges/insert-a-node-into-a-sorted-doubly-linked-list/problem.
+## Type: Linked Lists. Date: 4/14/21.
+# O(n). Janky solution. Can smooth this out.
+def sortedInsert(head, data):
+    newnode = DoublyLinkedListNode(data)
+    if head is None:
+        return head
+    if data <= head.data:
+        newnode.next = head
+        return newnode
+    node = head
+    
+    pre = DoublyLinkedListNode(head.data - 1)
+    node.prev = pre
+    while node:
+        if data <= node.data:
+            pre = node.prev
+            newnode.prev = pre
+            newnode.next = node
+            node.prev = newnode
+            pre.next = newnode
+            return head
+        else:
+            lastnode = node
+            node = node.next
+    lastnode.next = newnode
+    
+    return head
+
 ## HR: Find Merge Point of Two Lists. https://www.hackerrank.com/challenges/find-the-merge-point-of-two-joined-linked-lists/problem. Type: Linked Lists. Date: 4/14/21.
 # I think this is O(n)? Everything is O(n) except there is a search in each set - maybe the scaling of a set search is O(1)?
 def findMergeNode(head1, head2):
