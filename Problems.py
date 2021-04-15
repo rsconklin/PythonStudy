@@ -1,3 +1,56 @@
+## HR: Tree: Preorder Traversal. https://www.hackerrank.com/challenges/tree-preorder-traversal/problem. Type: Trees. Date: 4/15/21.
+# O(n). First successful attempt. This could definitely be better. On the positive side, it prints all elements of a binary tree in preorder without recursion.
+def preOrder(root):
+    stack = [root]
+    current = root
+    print(root.info, end=' ')
+    while stack:
+        if current.left:
+            testvisit = current.left
+            if testvisit.info != 'visited':
+                current = current.left
+                print(current.info, end=' ')
+                current.info = 'visited'
+                stack.append(current)
+            elif current.right:                
+                testvisit = current.right
+                if testvisit.info != 'visited':
+                    current = current.right
+                    print(current.info, end=' ')
+                    current.info = 'visited'
+                    stack.append(current)
+                else:
+                    stack.pop()
+                    if not stack:
+                        break
+                    else:
+                        current = stack[-1]
+            else:
+                stack.pop()
+                if not stack:
+                    break
+                else:
+                    current = stack[-1]                
+        elif current.right:
+            testvisit = current.right
+            if testvisit.info != 'visited':
+                current = current.right
+                print(current.info, end=' ')
+                current.info = 'visited'
+                stack.append(current)
+            else:
+                stack.pop()
+                if not stack:
+                    break
+                else:
+                    current = stack[-1]
+        else:
+            stack.pop()
+            if not stack:
+                break
+            else:
+                current = stack[-1]
+
 ## HR: Reverse a Doubly Linked List. https://www.hackerrank.com/challenges/reverse-a-doubly-linked-list/problem. Type: Linked Lists. Date: 4/14/21.
 # O(n).
 def reverse(head):
