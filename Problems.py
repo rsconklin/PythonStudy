@@ -1,4 +1,11 @@
 ## HR: Tree: Preorder Traversal. https://www.hackerrank.com/challenges/tree-preorder-traversal/problem. Type: Trees. Date: 4/15/21.
+# The standard recursive version:
+def preOrder(root):
+    if root:
+        print(root.info, end=' ')
+        preOrder(root.left)
+        preOrder(root.right)
+
 # O(n). First successful attempt. This could definitely be better. On the positive side, it prints all elements of a binary tree in preorder without recursion.
 def preOrder(root):
     stack = [root]
