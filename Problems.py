@@ -1,3 +1,16 @@
+## HR: Tree: Height of Binary Tree. https://www.hackerrank.com/challenges/tree-height-of-a-binary-tree/problem. Type: Trees. Date: 4/16/21.
+# No recursion.
+def height(root):
+    from collections import deque    
+    deq = deque([(root, 0)])
+    while deq:
+        current, height = deq.popleft()
+        if current.left:
+            deq.append((current.left, height + 1))
+        if current.right:
+            deq.append((current.right, height + 1))
+    return height
+
 ## HR: Tree: Inorder Traversal. https://www.hackerrank.com/challenges/tree-inorder-traversal/problem. Type: Trees. Date: 4/15/21.
 # Without recursion:
 def inOrder(root):
