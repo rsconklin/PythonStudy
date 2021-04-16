@@ -1,4 +1,18 @@
 ## HR: Tree: Inorder Traversal. https://www.hackerrank.com/challenges/tree-inorder-traversal/problem. Type: Trees. Date: 4/15/21.
+# Without recursion:
+def inOrder(root):
+    stack = []
+    node = root
+    
+    while stack or node:
+        if node:
+            stack.append(node)
+            node = node.left
+        else:
+            node = stack.pop()
+            print(node.info, end=' ')
+            node = node.right
+
 # Motivated by HR discussion:
 def inOrder(root):
     if root:
