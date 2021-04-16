@@ -1,3 +1,17 @@
+## HR: Binary Search Tree: Lowest Common Ancestor. https://www.hackerrank.com/challenges/binary-search-tree-lowest-common-ancestor/problem.
+## Type: Trees. Date: 4/16/21.
+def lca(root, v1, v2):
+    v3 = root.info
+    current = root
+    while True:
+        v3 = current.info
+        if v1 > v3 and v2 > v3:
+            current = current.right
+        elif v1 < v3 and v2 < v3:
+            current = current.left
+        else:
+            return current
+
 ## HR: Binary Search Tree: Insertion. https://www.hackerrank.com/challenges/binary-search-tree-insertion/problem. Type: Trees. Date: 4/16/21.
     def insert(self, val):
         newnode = Node(val)
