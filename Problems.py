@@ -1,3 +1,70 @@
+## HR: Tree: Level Order Traversal. https://www.hackerrank.com/challenges/tree-level-order-traversal/problem. Type: Trees. Date: 4/16/21.
+def levelOrder(root):
+    
+    from collections import deque
+    
+    deq = deque([(root, 0, 0)])
+    coords = {} 
+    
+    while deq:
+        current, height, distance = deq.popleft() 
+        try:
+            coords[height].append((distance, current.info))
+        except:
+            coords[height] = [(distance, current.info)]
+        if current.left:
+            deq.append((current.left, height + 1, distance - 1))
+        if current.right:
+            deq.append((current.right, height + 1, distance + 1))
+    height_max = height
+        
+    order = [key for key in coords]
+    order.sort()
+    
+    bfvals = []
+    for i in range(height_max + 1):
+        tuples = coords[i]
+        tuples_sort = sorted(tuples, key=lambda t: (t[0], t[1]))
+        vals = [val[1] for val in tuples]
+        for v in vals:
+            bfvals.append(v)
+    
+    print(*bfvals)
+
+## HR: Tree: Top View. https://www.hackerrank.com/challenges/tree-top-view/problem. Type: Trees. Date: 4/16/21.
+# I have to do a sort here, which is not optimal, but at least the sort is only over unique distances from the center line. Worst case scenario, if the nodes are all
+# extended in the same direction, this sort is O(nlogn).
+def topView(root):
+    # I want to get a tuple of the height and distance from the middle
+    # for each node. This can then be compared at the end to print out
+    # the top view.
+    
+    from collections import deque
+    
+    deq = deque([(root, 0, 0)])
+    coords = {}
+        
+    while deq:
+        current, height, distance = deq.popleft()
+        try:
+            coords[distance].append((height, current.info))
+        except:
+            coords[distance] = [(height, current.info)]
+        if current.left:
+            deq.append((current.left, height + 1, distance - 1))
+        if current.right:
+            deq.append((current.right, height + 1, distance + 1))
+        
+    order = [key for key in coords]
+    order.sort()
+    
+    topvals = []
+    
+    for d in order:
+        topvals.append((min(coords[d])[1]))
+        
+    print(*topvals)
+
 ## HR: Tree: Height of Binary Tree. https://www.hackerrank.com/challenges/tree-height-of-a-binary-tree/problem. Type: Trees. Date: 4/16/21.
 # No recursion.
 def height(root):
