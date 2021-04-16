@@ -7,6 +7,13 @@ def inOrder(root):
         inOrder(root.right)
 
 ## HR: Tree: Postorder Traversal. https://www.hackerrank.com/challenges/tree-postorder-traversal/problem. Type: Trees. Date: 4/15/21.
+# There is a pattern with these solutions. Here is the solution according to that pattern.
+def inOrder(root):
+    if root:
+        inOrder(root.left)
+        print(root.info, end=' ')
+        inOrder(root.right)
+
 # My first successful attempt: Recursive.
 def postOrder(root):
     if root.left:
