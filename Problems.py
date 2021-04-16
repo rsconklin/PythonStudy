@@ -1,3 +1,26 @@
+## HR: Binary Search Tree: Insertion. https://www.hackerrank.com/challenges/binary-search-tree-insertion/problem. Type: Trees. Date: 4/16/21.
+    def insert(self, val):
+        newnode = Node(val)
+        if self.root is None:
+            self.root = newnode
+        else:
+            current = self.root
+            while True:
+                cval = current.info
+                if val <= cval:
+                    if current.left:
+                        current = current.left
+                    else:
+                        current.left = newnode
+                        break
+                if val > cval:
+                    if current.right:
+                        current = current.right
+                    else:
+                        current.right = newnode
+                        break
+        return self.root
+
 ## HR: Tree: Level Order Traversal. https://www.hackerrank.com/challenges/tree-level-order-traversal/problem. Type: Trees. Date: 4/16/21.
 def levelOrder(root):
     
