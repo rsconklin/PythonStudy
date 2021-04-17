@@ -1,3 +1,38 @@
+## HR: Smart Number. https://www.hackerrank.com/challenges/smart-number/problem. Type: Debugging. Date: 4/16/21.
+# Kinda odd question. Need to know that perfect squares have an odd number of factors, when duplicates are not included.
+# Fix was to check if the number is a perfect square.
+import math
+
+def is_smart_number(num):
+    val = int(math.sqrt(num))
+    if num / val == 1:
+        return True
+    return False
+
+for _ in range(int(input())):
+    num = int(input())
+    ans = is_smart_number(num)
+    if ans:
+        print("YES")
+    else:
+        print("NO")
+
+## HR: XOR Strings. https://www.hackerrank.com/challenges/strings-xor/problem. Type: Debugging. Date: 4/16/21.
+# Corrected: = to ==, res = ... to res +=.
+def strings_xor(s, t):
+    res = ""
+    for i in range(len(s)):
+        if s[i] == t[i]:
+            res += '0';
+        else:
+            res += '1';
+
+    return res
+
+s = input()
+t = input()
+print(strings_xor(s, t))
+
 ## HR: Binary Search Tree: Lowest Common Ancestor. https://www.hackerrank.com/challenges/binary-search-tree-lowest-common-ancestor/problem.
 ## Type: Trees. Date: 4/16/21.
 def lca(root, v1, v2):
