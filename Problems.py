@@ -1,3 +1,15 @@
+## HR: Electronics Shop. https://www.hackerrank.com/challenges/electronics-shop/problem. Type: Implementation. Date: 4/17/21.
+# O(n^2) brute force.
+def getMoneySpent(keyboards, drives, b):
+    if min(keyboards) + min(drives) > b:
+        return -1
+    prices = []
+    for k in keyboards:
+        for d in drives:
+            if k + d <= b:
+                prices.append(k + d)
+    return max(prices)
+
 ## HR: Counting Valleys. https://www.hackerrank.com/challenges/counting-valleys/problem. Type: Implementation. Date: 4/17/21.
 # O(n)
 def countingValleys(steps, path):
