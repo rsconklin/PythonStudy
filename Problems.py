@@ -1,3 +1,23 @@
+## HR: Designer PDF Viewer. https://www.hackerrank.com/challenges/designer-pdf-viewer/problem. Type: Implementation. Date: 4/17/21.
+# O(n)
+def designerPdfViewer(h, word):
+    import string
+    alph = string.ascii_lowercase
+    height = 0
+    for letter in word:
+        idx = alph.index(letter)
+        if h[idx] >= height:
+            height = h[idx]
+    return height * len(word)
+
+## HR: The Hurdle Race. https://www.hackerrank.com/challenges/the-hurdle-race/problem. Type: Implementation. Date: 4/17/21.
+def hurdleRace(k, height):
+    m = max(height) - k
+    if m <= 0:
+        return 0
+    else:
+        return m
+
 ## HR: Picking Numbers. https://www.hackerrank.com/challenges/picking-numbers/problem. Type: Implementation. Date: 4/17/21.
 # O(n)
 def pickingNumbers(a):
