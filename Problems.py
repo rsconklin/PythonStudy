@@ -1,3 +1,14 @@
+## HR: Ice Cream Parlor. https://www.hackerrank.com/challenges/icecream-parlor/problem. Type: Search. Date: 4/17/21.
+# O(n). Version of Two Sum.
+def icecreamParlor(m, arr):
+    hashtable = {}
+    for idx, price in enumerate(arr):
+        diff = m - price
+        if diff in hashtable:
+            return [hashtable[diff] + 1, idx + 1]
+        else:
+            hashtable[price] = idx
+
 ## HR: Smart Number. https://www.hackerrank.com/challenges/smart-number/problem. Type: Debugging. Date: 4/16/21.
 # Kinda odd question. Need to know that perfect squares have an odd number of factors, when duplicates are not included.
 # Fix was to check if the number is a perfect square.
