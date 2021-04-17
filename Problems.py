@@ -1,3 +1,21 @@
+## HR: Beautiful Days at the Movies. https://www.hackerrank.com/challenges/beautiful-days-at-the-movies/problem. Type: Implementation. Date: 4/17/21.
+# O(n)
+def beautifulDays(i, j, k):
+    count = 0
+    for idx in range(i, j + 1):
+        s = int(str(idx)[::-1])
+        print(s)
+        if abs(idx - s) % k == 0:
+            count += 1
+    return count
+
+## HR: Angry Professor. https://www.hackerrank.com/challenges/angry-professor/problem. Type: Implementation. Date: 4/17/21.
+def angryProfessor(k, a):
+    ontime = [student for student in a if student <= 0]
+    if len(ontime) >= k:
+        return 'NO'
+    return 'YES'
+
 ## HR: Utopian Tree. https://www.hackerrank.com/challenges/utopian-tree/problem. Type: Implementation. Date: 4/17/21.
 # O(n)
 def utopianTree(n):
