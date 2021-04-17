@@ -1,5 +1,16 @@
 ## HR: Sherlock and Array. https://www.hackerrank.com/challenges/sherlock-and-array/problem. Type: Sherlock and Array. Date: 4/17/21.
-# First attempt. O(n)
+# Second success, inspired by HR discussion.
+def balancedSums(arr):
+    sumleft = 0
+    sumright = sum(arr)
+    for i in range(len(arr)):
+        sumright -= arr[i]
+        if sumleft == sumright:
+            return 'YES'
+        sumleft += arr[i]
+    return 'NO'
+
+# First success. O(n)
 def balancedSums(arr):
     if len(arr) == 1:
             return 'YES'
