@@ -1,3 +1,26 @@
+## HR: Picking Numbers. https://www.hackerrank.com/challenges/picking-numbers/problem. Type: Implementation. Date: 4/17/21.
+# O(n)
+def pickingNumbers(a):
+    from collections import Counter
+    ac = Counter(a)
+    slenmax = 0
+    for key in ac:
+        slen = max(sum([ac[key-1], ac[key]]), sum([ac[key], ac[key+1]]))
+        if slen > slenmax:
+            slenmax = slen
+    return slenmax
+
+## HR: Cats and a Mouse. https://www.hackerrank.com/challenges/cats-and-a-mouse/problem. Type: Implementation. Date: 4/17/21.
+def catAndMouse(x, y, z):
+    xz = abs(x - z)
+    yz = abs(y - z)
+    if xz == yz:
+        return 'Mouse C'
+    elif xz < yz:
+        return 'Cat A'
+    else:
+        return 'Cat B'
+
 ## HR: Electronics Shop. https://www.hackerrank.com/challenges/electronics-shop/problem. Type: Implementation. Date: 4/17/21.
 # O(n^2) brute force.
 def getMoneySpent(keyboards, drives, b):
