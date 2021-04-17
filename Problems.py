@@ -1,3 +1,14 @@
+## HR: Utopian Tree. https://www.hackerrank.com/challenges/utopian-tree/problem. Type: Implementation. Date: 4/17/21.
+# O(n)
+def utopianTree(n):
+    height = 1
+    for i in range(1, n+1):
+        if i % 2 == 0:
+            height += 1
+        else:
+            height = height * 2
+    return height
+
 ## HR: Designer PDF Viewer. https://www.hackerrank.com/challenges/designer-pdf-viewer/problem. Type: Implementation. Date: 4/17/21.
 # O(n)
 def designerPdfViewer(h, word):
