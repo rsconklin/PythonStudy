@@ -1,3 +1,30 @@
+## HR: Sherlock and Array. https://www.hackerrank.com/challenges/sherlock-and-array/problem. Type: Sherlock and Array. Date: 4/17/21.
+# First attempt. O(n)
+def balancedSums(arr):
+    if len(arr) == 1:
+            return 'YES'
+    
+    totleft = 0
+    totright = sum(arr[1:])
+    
+    for i in range(len(arr) - 1):
+        if totleft == totright:
+            return 'YES'
+        else:
+            totleft += arr[i]
+            totright -= arr[i+1]
+    if totleft == totright:
+        return 'YES'
+    return 'NO'
+
+## HR: Missing Numbers. https://www.hackerrank.com/challenges/missing-numbers/problem. Type: Search. Date: 4/17/21.
+# O(n).
+def missingNumbers(arr, brr):
+    from collections import Counter
+    a = Counter(arr)
+    b = Counter(brr)
+    return sorted((b - a).keys())
+
 ## HR: Ice Cream Parlor. https://www.hackerrank.com/challenges/icecream-parlor/problem. Type: Search. Date: 4/17/21.
 # O(n). Version of Two Sum.
 def icecreamParlor(m, arr):
