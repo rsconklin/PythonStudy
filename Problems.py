@@ -1,3 +1,17 @@
+## HR: Counting Valleys. https://www.hackerrank.com/challenges/counting-valleys/problem. Type: Implementation. Date: 4/17/21.
+# O(n)
+def countingValleys(steps, path):
+    height = 0
+    count = 0
+    for i in range(steps):
+        if path[i] == 'U':
+            height += 1
+            if height == 0:
+                count += 1
+        else:
+            height -= 1
+    return count
+
 ## HR: Flipping Bits. https://www.hackerrank.com/challenges/flipping-bits/problem. Type: Bit Manipulation. Date: 4/17/21.
 def flippingBits(n):
     s = str(bin(n)[2:])
