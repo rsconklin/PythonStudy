@@ -1,3 +1,45 @@
+## HR: Flipping Bits. https://www.hackerrank.com/challenges/flipping-bits/problem. Type: Bit Manipulation. Date: 4/17/21.
+def flippingBits(n):
+    s = str(bin(n)[2:])
+    zeroes = 32 - len(s)
+    s = '0'*zeroes + s
+    sl = list(s)
+    for i in range(len(sl)):
+        if sl[i] == '1':
+            sl[i] = '0'
+        else:
+            sl[i] = '1'
+    return int(''.join(sl), 2)
+
+## HR: Sum vs XOR. https://www.hackerrank.com/challenges/sum-vs-xor/problem. Type: Bit Manipulation. Date: 4/17/21.
+# This times out on several test cases. It is brute force. 
+def sumXor(n):
+    count = 0
+    for x in range(n+1):
+        
+        if x + n == n ^ x:
+            count += 1 
+    return count
+
+## HR: Maximizing XOR. https://www.hackerrank.com/challenges/maximizing-xor/problem. Type: Bit Manipulation. Date: 4/17/21.
+# O(n^2)
+def maximizingXor(l, r):
+    xorlist = []
+    for b in range(l, r + 1):
+        a = l
+        while a <= b:
+            xorlist.append(a ^ b)
+            a += 1
+    return max(xorlist)
+
+## HR: Lonely Integer. https://www.hackerrank.com/challenges/lonely-integer/problem. Type: Bit Manipulation. Date: 4/17/21.
+def lonelyinteger(a):
+    from collections import Counter
+    ac = Counter(a)
+    for key in ac:
+        if ac[key] == 1:
+            return key
+
 ## HR: Sherlock and Array. https://www.hackerrank.com/challenges/sherlock-and-array/problem. Type: Sherlock and Array. Date: 4/17/21.
 # Second success, inspired by HR discussion.
 def balancedSums(arr):
