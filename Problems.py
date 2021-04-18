@@ -1,3 +1,13 @@
+## HR: Viral Advertising. https://www.hackerrank.com/challenges/strange-advertising/problem. Type: Implementation. Date: 4/17/21.
+# O(n).
+def viralAdvertising(n):
+    likedc = 0
+    viewed = 5
+    for i in range(1, n + 1):
+        likedc += viewed//2
+        viewed = (viewed//2) * 3
+    return likedc
+
 ## HR: Beautiful Days at the Movies. https://www.hackerrank.com/challenges/beautiful-days-at-the-movies/problem. Type: Implementation. Date: 4/17/21.
 # O(n)
 def beautifulDays(i, j, k):
