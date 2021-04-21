@@ -1,3 +1,52 @@
+## LeetCode (LC): Median of Two Sorted Arrays. https://leetcode.com/problems/median-of-two-sorted-arrays/submissions/. Type: Arrays. Date: 4/21/21.
+# O(n/2) = O(n).
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        
+        from collections import deque
+        
+        deq1 = deque(nums1)
+        deq2 = deque(nums2)
+        
+        total_len = len(deq1) + len(deq2)
+        
+        merged = []
+        
+        for i in range(total_len//2 + 1):
+            if not deq1:
+                merged.append(deq2.popleft())
+            elif not deq2:
+                merged.append(deq1.popleft())
+            else:
+                if deq1[0] <= deq2[0]:
+                    merged.append(deq1.popleft())
+                else:
+                    merged.append(deq2.popleft())
+        
+        if total_len % 2 == 0:
+            return (merged[-1] + merged[-2])/2
+        else:
+            return merged[-1]
+
+## HR: Circular Array Rotation. https://www.hackerrank.com/challenges/circular-array-rotation/problem. Type: Implementation. Date: 4/21/21.
+# O(n)
+n, k, q = map(int, input().split())
+array = list(map(int, input().split()))
+
+for i in range(q):
+    m = int(input())
+    print(array[m - k % n])
+
+## HR: Save the Prisoner! https://www.hackerrank.com/challenges/save-the-prisoner/problem. Type: Implementation. Date: 4/21/21.
+# O(1)
+def saveThePrisoner(n, m, s):
+    mod = (s + m-1) % n
+    if mod == 0:
+        warn = n
+    else:
+        warn = (s + m-1) % n
+    return warn
+
 ## HR: Viral Advertising. https://www.hackerrank.com/challenges/strange-advertising/problem. Type: Implementation. Date: 4/17/21.
 # O(n).
 def viralAdvertising(n):
