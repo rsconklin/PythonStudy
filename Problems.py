@@ -1,3 +1,148 @@
+## LC: Roman to Integer. https://leetcode.com/problems/roman-to-integer/. Type: Strings. Date: 4/22/21.
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        
+        count = 0
+        i = 0
+        
+        while i < len(s):
+            
+            if s[i] == 'M':
+                count += 1000
+                i += 1
+            elif s[i : i + 2] == 'CM':
+                count += 900
+                i += 2
+            elif s[i] == 'D':
+                count += 500
+                i += 1
+            elif s[i : i + 2] == 'CD':
+                count += 400
+                i += 2
+            elif s[i] == 'C':
+                count += 100
+                i += 1
+            elif s[i : i + 2] == 'XC':
+                count += 90
+                i += 2
+            elif s[i : i + 2] == 'XL':
+                count += 40
+                i += 2
+            elif s[i] == 'L':
+                count += 50
+                i += 1
+            elif s[i] == 'X':
+                count += 10
+                i += 1
+            elif s[i : i + 2] == 'IX':
+                count += 9
+                i += 2
+            elif s[i : i + 2] == 'IV':
+                count += 4
+                i += 2
+            elif s[i] == 'V':
+                count += 5
+                i += 1
+            elif s[i] == 'I':
+                count += 1
+                i += 1
+                
+        return count
+
+## LC: Integer to Roman. https://leetcode.com/problems/integer-to-roman/. Type: Strings. Date: 4/22/21.
+# O(n)
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        
+        numerals = []
+        
+        # Start with the largest numbers and subtract these from the total to work towards smaller digits.
+        
+        # How many M's do we need?
+        M = num//1000
+        for i in range(M):
+            numerals.append('M')
+        num = num % 1000
+        
+        # Edge cases of 400 and 900, and any additional D's.
+        string = str(num)
+        if string[0] == '9' and num >= 900:
+            numerals.append('CM')
+            num = num % 900
+        elif string[0] == '4' and num >= 400:
+            numerals.append('CD')
+            num = num % 400
+        elif num >= 500:
+            numerals.append('D')
+            num = num % 500
+            
+        # Remaining hundreds.    
+        C = num//100
+        num = num % 100
+        for i in range(C):
+            numerals.append('C')
+        
+        # Edge cases 90, 40. And any L's.
+        string = str(num)
+        if string[0] == '9' and num >= 90:
+            numerals.append('XC')
+            num = num % 90
+        elif string[0] == '4' and num >= 40:
+            numerals.append('XL')
+            num = num % 40
+        elif num >= 50:
+            numerals.append('L')
+            num = num % 50
+        
+        X = num//10
+        num = num % 10
+        for i in range(X):
+            numerals.append('X')
+        
+        string = str(num)
+        if string[0] == '9' and num >= 9:
+            numerals.append('IX')
+            num = num % 9
+        elif string[0] == '4' and num >= 4:
+            numerals.append('IV')
+            num = num % 4
+        elif num >= 5:
+            numerals.append('V')
+            num = num % 5
+
+        for i in range(num):
+            numerals.append('I')
+            
+        return ''.join(numerals)
+
+## LeetCode (LC): String to Integer (atoi). https://leetcode.com/problems/string-to-integer-atoi/. Type: String (I did RegEx). Date: 4/22/21.
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        
+        import re
+        
+        # The \d+ assumes that there is at least one digit.
+        p = re.compile(r'\s*[+-]?\d+')
+        
+        m = p.match(s)
+        
+        if not m:
+            return 0
+        
+        num = int(m.group())
+        
+        #if num[0] == '+':
+        #    num = num[1:]
+        #elif num[0] == '-':
+        #    num = -int(num[1:])
+        
+        if num < -2**31:
+            num = -2**31
+        elif num >= 2**31:
+            num = 2**31 - 1
+        
+        return num
+
 ## LeetCode (LC): Longest Palindromic Substring. https://leetcode.com/problems/longest-palindromic-substring/. Type: Strings. Date: 4/22/21.
 # O(n^2). This was faster than 87.7% of Python submissions. The code below could probably be cut in half to be made more concise.
 class Solution:
