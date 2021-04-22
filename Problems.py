@@ -1,3 +1,67 @@
+## LeetCode (LC): Longest Palindromic Substring. https://leetcode.com/problems/longest-palindromic-substring/. Type: Strings. Date: 4/22/21.
+# O(n^2). This was faster than 87.7% of Python submissions. The code below could probably be cut in half to be made more concise.
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        
+        if len(s) == 0:
+            return None
+        elif len(s) == 1:
+            return s
+        
+        max_len = 1
+        substr = s[0]
+        
+        for i in range(len(s) - 1):
+            
+            if s[i] == s[i + 1]:
+                distance = min(i, len(s) - i - 2)
+                count = self.substring(s, i, 'even', distance)
+                if max_len < count:
+                    max_len = count
+                    substr = s[i - max_len//2 + 1: i + 1 + max_len//2]
+            
+            distance = min(i, len(s) - i - 1)
+            count = self.substring(s, i, 'odd', distance)
+            if max_len < count:
+                max_len = count
+                substr = s[i - max_len//2: i + 1 + max_len//2]
+                    
+        return substr
+        
+        
+    # Code for a substring.
+    def substring(self, s, i, evenodd, distance):
+        
+        if evenodd == 'even':
+            count = 2
+        else:
+            count = 1
+        
+        if evenodd == 'even':
+            l = i - 1
+            r = i + 2
+            for j in range(distance):
+                if s[l] == s[r]:
+                    count += 2
+                    l -= 1
+                    r += 1
+                else:
+                    return count
+        else:
+            l = i - 1
+            r = i + 1
+            for j in range(distance):
+                if s[l] == s[r]:
+                    count += 2
+                    l -= 1
+                    r += 1
+                else:
+                    return count
+        
+        return count
+
+            
+
 ## LeetCode (LC): Median of Two Sorted Arrays. https://leetcode.com/problems/median-of-two-sorted-arrays/submissions/. Type: Arrays. Date: 4/21/21.
 # O(n/2) = O(n).
 class Solution:
