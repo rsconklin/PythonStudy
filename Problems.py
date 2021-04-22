@@ -1,3 +1,26 @@
+## LC: Valid Parentheses. https://leetcode.com/problems/valid-parentheses/. Type: Strings and Dictionary. Date: 4/22/21.
+# O(n).
+class Solution:
+    def isValid(self, s: str) -> bool:
+        
+        d = {'(' : ')', '[' : ']', '{' : '}'}
+        stack = []
+        if s == '':
+            return True
+        elif len(s) == 1:
+            return False
+        
+        for i in s:
+            if i in d.keys():
+                stack.append(i)
+            elif (i in d.values() and stack == []) or (d[stack.pop()] != i):
+                return False
+            
+        if stack == []:
+            return True
+        else:
+            return False
+
 ## LC: Roman to Integer. https://leetcode.com/problems/roman-to-integer/. Type: Strings. Date: 4/22/21.
 class Solution:
     def romanToInt(self, s: str) -> int:
