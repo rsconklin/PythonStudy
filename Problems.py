@@ -1,3 +1,60 @@
+## LC: Merge k Sorted Lists. https://leetcode.com/problems/merge-k-sorted-lists/. Type: Linked Lists. Date: 4/22/21.
+# O(k*m) where k is the length of lists and m is the length of each sublist.
+# Times out.
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        
+        if lists in ([], [[]]):
+            return None
+        
+        values = []
+        
+        i = 0
+        k = len(lists)
+        while i < k:
+            if not lists[i]:
+                del lists[i]
+                k = len(lists)
+            else:
+                values.append((lists[i].val, i))
+                i += 1
+        
+        if values == []:
+            return None
+            
+        minval, minpos = min(values)
+        
+        firstNode = ListNode(minval)
+        
+        lists[minpos] = lists[minpos].next
+        
+        oldNode = firstNode
+        while True:
+            values = []
+            i = 0
+            k = len(lists)
+            while i < k:
+                if not lists[i]:
+                    del lists[i]
+                    k = len(lists)
+                else:
+                    values.append((lists[i].val, i))
+                    i += 1
+            if values == [] or k == 0:
+                break
+            minval, minpos = min(values)
+            newNode = ListNode(minval)
+            oldNode.next = newNode
+            oldNode = newNode
+            lists[minpos] = lists[minpos].next
+            
+        return firstNode
+
 ## LC: Valid Parentheses. https://leetcode.com/problems/valid-parentheses/. Type: Strings and Dictionary. Date: 4/22/21.
 # O(n).
 class Solution:
