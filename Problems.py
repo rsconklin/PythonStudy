@@ -1,5 +1,50 @@
-## LC: Merge k Sorted Lists. https://leetcode.com/problems/merge-k-sorted-lists/. Type: Linked Lists. Date: 4/22/21.
-# O(k*m) where k is the length of lists and m is the length of each sublist.
+## LC: Merge k Sorted Lists. https://leetcode.com/problems/merge-k-sorted-lists/. Type: Linked Lists. Date: 4/22-23/21.
+# O(max(klogk, m)) where k is the number of linked lists and m is the number of nodes.
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        
+        # Work with a heap to effectively sort the linked lists with respect to each other.
+        from heapq import heapify, heappop, heappush
+        
+        # Deal with the edge cases of empty lists.
+        if len(lists) == 0:
+            return None
+        
+        # Construct the heap according to node.val, but keep indices to come back to each ll.
+        heap = []
+        for i in range(len(lists)):
+            if lists[i]:
+                heap.append((lists[i].val, i))
+        heapify(heap)
+        
+        if not heap:
+            return None
+                
+        # Get the minimal node from the heap by popping, then replace with node.next and
+        # iterate until all lists elements are extracted.
+        idx = heappop(heap)[1]
+        headnode = lists[idx]
+        lists[idx] = lists[idx].next
+        if lists[idx]:
+            heappush(heap, (headnode.next.val, idx))
+        
+        node = headnode
+        while heap:
+            idx = heappop(heap)[1]
+            node.next = lists[idx]
+            node = lists[idx]
+            lists[idx] = lists[idx].next
+            if lists[idx]:
+                heappush(heap, (lists[idx].val, idx))
+            
+        return headnode
+
+# O(k^2*m^2) (baaaad) where k is the length of lists and m is the length of each sublist.
 # Times out.
 # Definition for singly-linked list.
 # class ListNode:
