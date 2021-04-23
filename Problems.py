@@ -44,7 +44,7 @@ class Solution:
             
         return headnode
 
-# O(k^2*m^2) (baaaad) where k is the length of lists and m is the length of each sublist.
+# O(k^2) where k is the length of lists.
 # Times out.
 # Definition for singly-linked list.
 # class ListNode:
