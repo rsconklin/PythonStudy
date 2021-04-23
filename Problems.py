@@ -1,3 +1,47 @@
+## LC: Valid Sudoku. https://leetcode.com/problems/valid-sudoku/. Type: Lists. Date: 4/23/21.
+# O(3n) == O(n).
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        
+        digits = {'{}'.format(i) for i in range(1, 10)}
+        
+        # Check rows.
+        for i in range(9):
+            nums = set()
+            for j in range(9):
+                b = board[i][j]
+                if b != '.':
+                    if b in nums or (b not in digits):
+                        return False
+                    else:
+                        nums.add(b)
+        
+        # Check columns.
+        for i in range(9):
+            nums = set()
+            for j in range(9):
+                b = board[j][i]
+                if b != '.':
+                    if b in nums or (b not in digits):
+                        return False
+                    else:
+                        nums.add(b)
+        
+        # Check subdivisions.
+        for i in range(3):
+            for j in range(3):
+                nums = set()
+                for k in range(3):
+                    for l in range(3):
+                        b = board[3*i + k][3*j + l]
+                        if b != '.':
+                            if b in nums or (b not in digits):
+                                return False
+                            else:
+                                nums.add(b)
+        
+        return True
+
 ## LC: Merge k Sorted Lists. https://leetcode.com/problems/merge-k-sorted-lists/. Type: Linked Lists. Date: 4/22-23/21.
 # O(max(klogk, m)) where k is the number of linked lists and m is the number of nodes.
 # Definition for singly-linked list.
