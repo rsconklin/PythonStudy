@@ -1,3 +1,14 @@
+## LC: Top K Frequent Elements. https://leetcode.com/problems/top-k-frequent-elements/. Type: Counter. Date: 4/24/21.
+# O(n)
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        from collections import Counter
+        
+        c = Counter(nums)
+        
+        most = c.most_common(k)
+        return [k for (k, v) in most]
+
 ## LC: Word Search. https://leetcode.com/problems/word-search/. Type: Arrays. Date: 4/24/21.
 # O(k * N) where k == len(word) and N is the number of elements on the board.
 class Solution:
