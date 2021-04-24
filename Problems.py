@@ -1,3 +1,21 @@
+## LC: Combination Sum. https://leetcode.com/problems/combination-sum/. Type: Stack. Date: 4/23/21.
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        
+        candidates = [c for c in candidates if c <= target]
+        stack = [(0, [], target)]
+        combs = []
+        
+        while stack:
+            i, temp, target = stack.pop()
+            while i < len(candidates) and target > 0:
+                if target - candidates[i] == 0:
+                    combs.append(temp + [candidates[i]])
+                stack.append((i, temp + [candidates[i]], target - candidates[i]))
+                i += 1
+        
+        return combs
+
 ## LC: Valid Sudoku. https://leetcode.com/problems/valid-sudoku/. Type: Lists. Date: 4/23/21.
 # O(3n) == O(n).
 class Solution:
