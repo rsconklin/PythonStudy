@@ -1,3 +1,51 @@
+## LC: Rotate List. https://leetcode.com/problems/rotate-list/. Type: Linked Lists. Date: 4/24/21.
+# O(n).
+class Solution:
+    def rotateRight(self, head: ListNode, k: int) -> ListNode:
+        
+        # First get the values and input them into a list.
+        # Then do the rotation on the list (abstractly).
+        # Then build a linked list from result.
+        
+        # Get values.
+        values = []
+        node = head
+        while node:
+            values.append(node.val)
+            node = node.next
+            
+        n = len(values)
+        if n == 0:
+            return None
+        
+        # Get the rotated list of values.
+        rotated_values = []
+        for i in range(n):
+            idx = (i - k) % n
+            rotated_values.append(values[idx])
+            
+        # Turn the rotated values into a linked list.
+        head = ListNode(rotated_values[0])
+        node = head
+        for i in range(1, n):
+            node.next = ListNode(rotated_values[i])
+            node = node.next
+            
+        return head
+
+## LC: Merge Intervals. https://leetcode.com/problems/merge-intervals/. Type: Lists. Date: 4/24/21.
+# O(n)
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals.sort()
+        merged = []
+        for i in intervals:
+            if merged == [] or merged[-1][-1] < i[0]:
+                merged.append(i)
+            else:
+                merged[-1] = [merged[-1][0], max(merged[-1][1], i[1])]
+        return merged
+
 ## LC: Permutations. https://leetcode.com/problems/permutations/. Type: Lists. Date: 4/24/21.
 # O(n!)
 class Solution:
