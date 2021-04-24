@@ -1,3 +1,16 @@
+## LC: Permutations. https://leetcode.com/problems/permutations/. Type: Lists. Date: 4/24/21.
+# O(n!)
+class Solution:
+    def permute(self, nums):
+        perms = [[]]
+        for n in nums:
+            new_perm = []
+            for perm in perms:
+                for i in range(len(perm) + 1):
+                    new_perm.append(perm[:i] + [n] + perm[i:])
+            perms = new_perm
+        return perms
+
 ## LC: Combination Sum. https://leetcode.com/problems/combination-sum/. Type: Stack. Date: 4/23/21.
 class Solution(object):
     def combinationSum(self, candidates, target):
