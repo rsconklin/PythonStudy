@@ -1,3 +1,62 @@
+## LC: Word Search. https://leetcode.com/problems/word-search/. Type: Arrays. Date: 4/24/21.
+# O(k * N) where k == len(word) and N is the number of elements on the board.
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        
+        m = len(board)
+        n = len(board[0])
+        
+        
+        # Find each pair of indices where the first letter of the word
+        # is located on the board. Pass these to worm to work through
+        # the surrounding letters.
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == word[0]:
+                    if len(word) == 1:
+                        return True
+                    nogo = [(i, j)]
+                    check = self.worm(m, n, board, word, word[1], 1, i, j, nogo)
+                    if check == 'Success':
+                        return True
+        return False
+        
+    def worm(self, m, n, board, word, letter, k, idxi, idxj, nogo):
+        for i, j in [(idxi - 1, idxj), (idxi, idxj - 1), (idxi, idxj + 1), (idxi + 1, idxj)]:
+                if 0 <= i < m and 0 <= j < n:
+                    if board[i][j] == letter and (i, j) not in nogo:
+                        if k == len(word) - 1:
+                            return 'Success'
+                        check = self.worm(m, n, board, word, word[k + 1], k + 1, i, j, nogo + [(i, j)])
+                        if check == 'Success': return check
+
+## LC: Minimum Path Sum. https://leetcode.com/problems/minimum-path-sum/. Type: Arrays. Date: 4/24/21.
+# O(m * n)
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        
+        m = len(grid)
+        n = len(grid[0])
+        
+        # We are going to find the minimal cost for moving to each space
+        # and fill the grid with these costs. Therefore initialize the
+        # cost matrix.
+        cost = [[0] * n for _ in range(m)]
+        
+        # Initialize the costs of the edges.
+        cost[0][0] = grid[0][0]
+        for i in range(1, m):
+            cost[i][0] = grid[i][0] + cost[i - 1][0]
+        for j in range(1, n):
+            cost[0][j] = grid[0][j] + cost[0][j - 1]
+        
+        # Get the interior costs.
+        for i in range(1, m):
+            for j in range(1, n):
+                cost[i][j] = grid[i][j] + min(cost[i][j - 1], cost[i - 1][j])
+        
+        return cost[-1][-1]
+
 ## LC: Rotate List. https://leetcode.com/problems/rotate-list/. Type: Linked Lists. Date: 4/24/21.
 # O(n).
 class Solution:
