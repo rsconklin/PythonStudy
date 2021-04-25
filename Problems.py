@@ -1,3 +1,36 @@
+## LC: Course Schedule. https://leetcode.com/problems/course-schedule/. Type: Graphs. Date: 4/24/21.
+# Too tired to think about O() right now. 
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        
+        adjList = [[] for i in range(numCourses)]
+        for course,prereq in prerequisites:
+            adjList[prereq].append(course)
+            
+        inNumber = [0 for i in range(numCourses)]
+        for c,p in prerequisites:
+            inNumber[c] += 1
+        
+        stack = []
+        for course in range(numCourses):
+            if inNumber[course] == 0:
+                stack.append(course)
+                
+        topOrder = []
+                
+        while stack:
+            course = stack.pop()
+            topOrder.append(course)
+            for des in adjList[course]:
+                inNumber[des] -= 1
+                if inNumber[des] == 0:
+                    stack.append(des)
+        
+        if len(topOrder) == numCourses:
+            return True
+        
+        return False
+
 ## LC: Top K Frequent Elements. https://leetcode.com/problems/top-k-frequent-elements/. Type: Counter. Date: 4/24/21.
 # O(n)
 class Solution:
