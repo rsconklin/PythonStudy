@@ -1,3 +1,19 @@
+## HR: Tree: Level Order Traversal. https://www.hackerrank.com/challenges/tree-level-order-traversal/problem. Type: Trees. Date: 4/26/21.
+# O(n)
+def levelOrder(root):
+    
+    from collections import deque
+    
+    deq = deque([root])
+    
+    while deq:
+        current = deq.popleft()
+        print(current.info, end=' ') 
+        if current.left:
+            deq.append(current.left)
+        if current.right:
+            deq.append(current.right)
+
 ## LC: Course Schedule. https://leetcode.com/problems/course-schedule/. Type: Graphs. Date: 4/24/21.
 # Too tired to think about O() right now. 
 class Solution:
