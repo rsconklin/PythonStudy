@@ -1,3 +1,44 @@
+## LC: Validate Binary Search Tree. https://leetcode.com/problems/validate-binary-search-tree/. Type: Trees. Date: 4/26/21.
+# O(n). No recursion!
+class Solution:
+    def isValidBST(self, root, floor = float('-inf'), ceiling = float('inf')):
+        
+        # First do an inOrder traversal. The pattern for this is left-root-right
+        # which means values will be visited in order from least to most for
+        # a BST.
+        
+        node = root
+        stack = []
+        order = []
+        
+        while stack or node:
+            if node:
+                stack.append(node)
+                node = node.left
+            else:
+                node = stack.pop()
+                order.append(node.val)
+                node = node.right
+        
+        for i in range(1, len(order)):
+            if order[i] <= order[i - 1]:
+                return False
+        
+        return True
+
+## LC: Validate Binary Search Tree. https://leetcode.com/problems/validate-binary-search-tree/. Tyep: Trees. Date: 4/26/21.
+# O(n)
+class Solution:
+    def isValidBST(self, root, floor = float('-inf'), ceiling = float('inf')):
+        
+        # First with recursion:
+        if not root:
+            return True
+        if root.val <= floor or root.val >= ceiling:
+            return False
+        
+        return self.isValidBST(root.left, floor, root.val) and self.isValidBST(root.right, root.val, ceiling)
+
 ## HR: Tree: Level Order Traversal. https://www.hackerrank.com/challenges/tree-level-order-traversal/problem. Type: Trees. Date: 4/26/21.
 # O(n)
 def levelOrder(root):
