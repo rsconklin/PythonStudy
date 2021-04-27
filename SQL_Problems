@@ -1,3 +1,21 @@
+SELECT Request_at 'Day', ROUND(COUNT(IF(Status != 'completed', True, NULL)) / COUNT(*), 2) 'Cancellation Rate'
+FROM Trips, (
+    SELECT Users_Id, Banned
+    FROM Users
+    WHERE Banned = 'Yes') AS ban
+WHERE (Trips.Client_Id != ban.Users_Id) AND (Trips.Driver_id != ban.Users_Id)
+    AND Request_at BETWEEN '2013-10-01' AND '2013-10-03'
+GROUP BY Request_at
+
+##
+SELECT D.Name AS 'Department', E.Name AS 'Employee', E.Salary
+FROM Employee AS E, Department AS D, (
+    SELECT Salary
+    FROM Employee
+    GROUP BY DepartmentId
+    ORDER BY Salary DESC) AS T
+WHERE E.Salary = T.Salary AND D.Id = E.DepartmentId
+
 ## HR: The Report. https://www.hackerrank.com/challenges/the-report/problem. Date: 4/19/21.
 SELECT CASE
     WHEN Grades.Grade < 8 THEN NULL
