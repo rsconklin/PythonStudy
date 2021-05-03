@@ -1,3 +1,31 @@
+## LC: Binary Tree Level Order Traversal. https://leetcode.com/problems/binary-tree-level-order-traversal/. Type: Trees. Date: 5/03/21.
+# O(n)
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        
+        from collections import deque
+        
+        if not root:
+            return None
+        
+        deq = deque([(root, 0)])
+        res = []
+        
+        while deq:
+            current, height = deq.popleft()
+            res.append((current.val, height))
+            if current.left:
+                deq.append((current.left, height - 1))
+            if current.right:
+                deq.append((current.right, height - 1))
+        
+        result = [[] for i in range(-height + 1)]
+        
+        for r in res:
+            result[-r[1]].append(r[0])
+        
+        return result
+
 ## LC: Symmetric Tree. https://leetcode.com/problems/symmetric-tree/. Type: Trees. Date: 5/03/21.
 # O(n)
 class Solution:
