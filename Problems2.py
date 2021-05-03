@@ -1,3 +1,25 @@
+## LC: Min Stack. https://leetcode.com/problems/min-stack/. Type: Classes. Date: 5/03/21.
+# Very slow. Need to optimize the getMin() method.
+class MinStack:
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.stack = []
+
+    def push(self, val: int) -> None:
+        self.stack = self.stack + [val]
+
+    def pop(self) -> None:
+        self.stack = self.stack[:-1]
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return min(self.stack)
+
 ## LC: Best TIme to Buy and Sell Stock. https://leetcode.com/problems/best-time-to-buy-and-sell-stock/. Type: Arrays. Date: 5/03/21.
 # O(n).
 class Solution:
