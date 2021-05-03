@@ -1,3 +1,20 @@
+## LC: Best TIme to Buy and Sell Stock. https://leetcode.com/problems/best-time-to-buy-and-sell-stock/. Type: Arrays. Date: 5/03/21.
+# O(n).
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        
+        if not prices:
+            return 0
+        
+        maxProfit = 0
+        minBuy = prices[0]
+        
+        for i in range(1, len(prices)):
+            maxProfit = max(maxProfit, prices[i] - minBuy)
+            minBuy = min(minBuy, prices[i])
+        
+        return maxProfit
+
 ## LC: Binary Tree Level Order Traversal. https://leetcode.com/problems/binary-tree-level-order-traversal/. Type: Trees. Date: 5/03/21.
 # O(n)
 class Solution:
