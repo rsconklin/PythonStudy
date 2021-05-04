@@ -1,3 +1,49 @@
+## LC: Course Schedule II. https://leetcode.com/problems/course-schedule-ii/. Type: Graphs. Date: 5/04/21.
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        '''Return the topological sort of the courses with their prerequisites.
+        
+        Our strategy will be to build an adjacency list of prerequisites, count
+        the number of prerequisites for each course, isolate those with zero
+        prerequisites, pop these from the list while marking their order, and
+        continue until all courses have been ordered or there is a loop. If a
+        loop is encountered, return an empty array.'''
+        
+        from collections import deque
+        
+        # Adjacency list.
+        adjList = [[] for i in range(numCourses)]
+        for p in prerequisites:
+            adjList[p[1]].append(p[0])
+        
+        # Number of prerequisites for each course.
+        numPre = [0 for i in range(numCourses)]
+        for p in prerequisites:
+            numPre[p[0]] += 1
+        
+        # Courses without prerequisites.
+        deq = deque([])
+        for i in range(numCourses):
+            if numPre[i] == 0:
+                deq.append(i)
+                
+        # The container for the final topologically sorted courses.
+        topSort = []
+        
+        # Pop courses with no prerequisites and reduce the numPre count.
+        while deq:
+            c = deq.popleft()
+            topSort.append(c)
+            for course in adjList[c]:
+                numPre[course] -= 1
+                if numPre[course] == 0:
+                    deq.append(course)
+        
+        if len(topSort) == numCourses:
+            return topSort
+        else:
+            return []
+
 ## LC: Number of Islands. https://leetcode.com/problems/number-of-islands/. Type: Arrays. Date: 5/03/21.
 # O(n*m)
 class Solution:
