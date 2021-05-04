@@ -1,5 +1,5 @@
 ## LC: Number of Islands. https://leetcode.com/problems/number-of-islands/. Type: Arrays. Date: 5/03/21.
-# O(n^2)
+# O(n*m)
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         
