@@ -30,7 +30,7 @@ class Solution:
         # The container for the final topologically sorted courses.
         topSort = []
         
-        # Pop courses with no prerequisites and reduce the numPre count. O(n*p)
+        # Pop courses with no prerequisites and reduce the numPre count. O(p)
         while deq:
             c = deq.popleft()
             topSort.append(c)
