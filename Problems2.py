@@ -1,3 +1,82 @@
+## LC: Find Median from Data Stream. https://leetcode.com/problems/find-median-from-data-stream/. Type: Heaps, Classes. Date: 5/04/21.
+# O(nlogn)
+from heapq import *
+
+class MedianFinder:
+
+    def __init__(self):
+        self.lower = []
+        self.upper = []
+
+    def addNum(self, num: int) -> None:
+        if len(self.lower) < len(self.upper):
+            heappush(self.lower, -heappushpop(self.upper, num))
+        else:
+            heappush(self.upper, -heappushpop(self.lower, -num))
+
+    def findMedian(self) -> float:
+        if len(self.lower) < len(self.upper):
+            return self.upper[0]
+        else:
+            return (self.upper[0] - self.lower[0])/2
+
+## LC: Word Search II. https://leetcode.com/problems/word-search-ii/. Type: Graph, Dynamic Programming (DP). Date: 5/04/21.
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        
+        m = len(board)
+        n = len(board[0])
+        wordlist = set()
+        
+        for w in words:
+            for i in range(m):
+                for j in range(n):
+                    if board[i][j] == w[0]:
+                        if self.wordtest(board, m, n, w, i, j):
+                            wordlist.add(w)
+        
+        return list(wordlist)
+        
+    def wordtest(self, board, m, n, w, i, j):
+        stack = [(0, i, j)]
+        indexset = {(i, j)}
+        visited = set()
+        
+        while stack:
+            lindex, i, j = stack[-1]
+            visited.add(stack[-1])
+            
+            if lindex == len(w) - 1:
+                return True
+            
+            if i - 1 >= 0 and ((lindex + 1, i - 1, j) not in visited) and ((i - 1, j) not in indexset):
+                if board[i - 1][j] == w[lindex + 1]:
+                    stack.append((lindex + 1, i - 1, j))
+                    indexset.add((i - 1, j))
+                    continue
+            if j + 1 < n and ((lindex + 1, i, j + 1) not in visited) and ((i, j + 1) not in indexset):
+                if board[i][j + 1] == w[lindex + 1]:
+                    stack.append((lindex + 1, i, j + 1))
+                    indexset.add((i, j + 1))
+                    continue
+            if i + 1 < m and ((lindex + 1, i + 1, j) not in visited) and ((i + 1, j) not in indexset):
+                if board[i + 1][j] == w[lindex + 1]:
+                    stack.append((lindex + 1, i + 1, j))
+                    indexset.add((i + 1, j))
+                    continue
+            if j - 1 >= 0 and ((lindex + 1, i, j - 1) not in visited) and ((i, j - 1) not in indexset):
+                if board[i][j - 1] == w[lindex + 1]:
+                    stack.append((lindex + 1, i, j - 1))
+                    indexset.add((i, j - 1))
+                    continue
+            
+            stack.pop()
+            indexset.remove((i, j))
+        
+        return False
+                
+                        
+
 ## LC: Design Add and Search Words Data Structure. https://leetcode.com/problems/design-add-and-search-words-data-structure/. Type: Dictionaries. Date: 5/04/21.
 # RegEx Slow.
 class WordDictionary:
