@@ -1,3 +1,28 @@
+## LC: Design Add and Search Words Data Structure. https://leetcode.com/problems/design-add-and-search-words-data-structure/. Type: Dictionaries. Date: 5/04/21.
+# RegEx Slow.
+class WordDictionary:
+
+    import re
+    
+    def __init__(self):
+        self.dict = {}
+        
+
+    def addWord(self, word: str) -> None:
+        try:
+            self.dict[len(word)].append(word)
+        except:
+            self.dict[len(word)] = [word]
+
+    def search(self, word: str) -> bool:    
+        p = re.compile(word)
+        if len(word) in self.dict:
+            for i in self.dict[len(word)]:
+                m = p.match(i)
+                if m:
+                    return True
+        return False
+
 ## LC: Course Schedule II. https://leetcode.com/problems/course-schedule-ii/. Type: Graphs. Date: 5/04/21.
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
