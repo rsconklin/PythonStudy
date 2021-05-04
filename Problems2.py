@@ -11,12 +11,12 @@ class Solution:
         
         from collections import deque
         
-        # Adjacency list.
+        # Adjacency list. O(p)
         adjList = [[] for i in range(numCourses)]
         for p in prerequisites:
             adjList[p[1]].append(p[0])
         
-        # Number of prerequisites for each course.
+        # Number of prerequisites for each course. O(p)
         numPre = [0 for i in range(numCourses)]
         for p in prerequisites:
             numPre[p[0]] += 1
@@ -30,7 +30,7 @@ class Solution:
         # The container for the final topologically sorted courses.
         topSort = []
         
-        # Pop courses with no prerequisites and reduce the numPre count.
+        # Pop courses with no prerequisites and reduce the numPre count. O(n*p)
         while deq:
             c = deq.popleft()
             topSort.append(c)
