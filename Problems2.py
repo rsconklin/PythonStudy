@@ -1,3 +1,58 @@
+## LC: Number of Islands. https://leetcode.com/problems/number-of-islands/. Type: Arrays. Date: 5/03/21.
+# O(n^2)
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        
+        m = len(grid)
+        n = len(grid[0])
+        islands = 0
+        
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == '1':
+                    self.submerge(grid, (i, j))
+                    islands += 1
+        
+        return islands
+            
+    # Terraform in a clockwise direction. 
+    # If a dead end is hit, pop the stack to reverse.
+    def submerge(self, grid, coords):
+        
+        i, j = coords
+        grid[i][j] = '0'
+        stack = [(i, j)]
+        m = len(grid)
+        n = len(grid[0])
+        
+        while stack:
+            i, j = stack[-1]
+            if i - 1 >= 0:
+                if grid[i - 1][j] == '1':
+                    stack.append((i - 1, j))
+                    i, j = i - 1, j
+                    grid[i][j] = '0'
+                    continue
+            if j + 1 < n:
+                if grid[i][j + 1] == '1':
+                    stack.append((i, j + 1))
+                    i, j = i, j + 1
+                    grid[i][j] = '0'
+                    continue
+            if i + 1 < m:
+                if grid[i + 1][j] == '1':
+                    stack.append((i + 1, j))
+                    i, j = i + 1, j
+                    grid[i][j] = '0'
+                    continue
+            if j - 1 >= 0:
+                if grid[i][j - 1] == '1':
+                    stack.append((i, j - 1))
+                    i, j = i, j - 1
+                    grid[i][j] = '0'
+                    continue
+            stack.pop()
+
 ## LC: Min Stack. https://leetcode.com/problems/min-stack/. Type: Classes. Date: 5/03/21.
 # Very slow. Need to optimize the getMin() method.
 class MinStack:
