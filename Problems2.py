@@ -1,3 +1,21 @@
+## LC: Reorder Data in Log Files. https://leetcode.com/problems/reorder-data-in-log-files/. Type: Strings, Sort. Date: 5/05/21.
+# O(k * nlogn)
+class Solution:
+    def reorderLogFiles(self, logs: List[str]) -> List[str]:
+        
+        letterlogs = []
+        digitlogs = []
+        
+        for i in logs:
+            if i.split()[1].isalpha():
+                letterlogs.append(i)
+            else:
+                digitlogs.append(i)
+        
+        letterlogs.sort(key = lambda x: (x.split()[1:], x.split()[0]))
+        
+        return letterlogs + digitlogs
+
 ## LC: LRU Cache. https://leetcode.com/problems/lru-cache/. Type: Caches. Date: 5/05/21.
 # O(capacity) for put().
 class LRUCache:
