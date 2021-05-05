@@ -1,3 +1,43 @@
+## LC: LRU Cache. https://leetcode.com/problems/lru-cache/. Type: Caches. Date: 5/05/21.
+# O(capacity) for put().
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.cache = {}
+        self.keytimes = {}
+        self.time = 0
+
+    def get(self, key: int) -> int:
+        if key in self.cache:
+            self.keytimes[key] = self.time
+            self.time += 1
+            return self.cache[key]
+        else:
+            return -1
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            self.cache[key] = value
+            self.keytimes[key] = self.time
+            self.time += 1
+        else:
+            if len(self.cache) == self.capacity:
+                time = self.time + 1
+                for k, t in self.keytimes.items():
+                    if time > t:
+                        delkey = k
+                        time = t
+                self.cache.pop(delkey)
+                self.keytimes.pop(delkey)
+                self.cache[key] = value
+                self.keytimes[key] = self.time
+                self.time += 1
+            else:
+                self.cache[key] = value
+                self.keytimes[key] = self.time
+                self.time += 1
+
 ## LC: Diameter of Binary Tree. https://leetcode.com/problems/diameter-of-binary-tree/. Type: Trees. Date: 5/05/21.
 # O(n)
 class Solution:
