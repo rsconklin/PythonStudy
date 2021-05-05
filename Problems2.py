@@ -1,3 +1,20 @@
+## LC: Longest Increasing Subsequence. https://leetcode.com/problems/longest-increasing-subsequence/. Type: Arrays. Date: 5/05/21.
+# O(nlogn)
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        
+        pSorted = [[nums[0]]]
+        
+        for num in nums[1:]:
+            for i in range(len(pSorted)):
+                if num <= pSorted[i][-1]:
+                    pSorted[i].append(num)
+                    break
+                elif i == len(pSorted) - 1:
+                    pSorted.append([num])
+            
+        return len(pSorted)
+
 ## LC: Find Median from Data Stream. https://leetcode.com/problems/find-median-from-data-stream/. Type: Heaps, Classes. Date: 5/04/21.
 # O(nlogn)
 from heapq import *
