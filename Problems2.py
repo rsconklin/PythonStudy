@@ -1,3 +1,21 @@
+## LC: Diameter of Binary Tree. https://leetcode.com/problems/diameter-of-binary-tree/. Type: Trees. Date: 5/05/21.
+# O(n)
+class Solution:
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        
+        self.diameter = 0
+        
+        self.dFind(root)
+        return self.diameter
+    
+    def dFind(self, node):
+        if not node:
+            return 0
+        left = self.dFind(node.left)
+        right = self.dFind(node.right)
+        self.diameter = max(self.diameter, left + right)
+        return 1 + max(left, right)
+
 ## LC: Reorganize String. https://leetcode.com/problems/reorganize-string/. Type: Strings. Date: 5/05/21.
 # O(nlogn)
 from collections import Counter
