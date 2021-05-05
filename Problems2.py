@@ -1,3 +1,28 @@
+## LC: Reorganize String. https://leetcode.com/problems/reorganize-string/. Type: Strings. Date: 5/05/21.
+# O(nlogn)
+from collections import Counter
+
+class Solution:
+    def reorganizeString(self, S: str) -> str:
+        count = Counter(S)
+        s = list(S)
+        l = len(S)
+        
+        s.sort(key = lambda x: (count[x], x), reverse = True)
+        
+        if count[s[0]] > (l + 1) // 2:
+            return ''
+        
+        iters = iter(s)
+        result = [None] * l
+        
+        for i in range(0, l, 2):
+            result[i] = next(iters)
+        for i in range(1, l, 2):
+            result[i] = next(iters)
+            
+        return ''.join(result)
+
 ## LC: Longest Increasing Subsequence. https://leetcode.com/problems/longest-increasing-subsequence/. Type: Arrays. Date: 5/05/21.
 # O(nlogn)
 class Solution:
