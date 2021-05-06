@@ -1,3 +1,36 @@
+## LC: Minimum Difficulty of a Job Schedule. https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/. Type: Dynamic Programming. Date: 5/06/21.
+# O(n^2 * d)
+class Solution:
+    def minDifficulty(self, jobDifficulty: List[int], d: int) -> int:
+        
+        numjobs = len(jobDifficulty)
+        
+        # If there are not enough jobs to fill the days.
+        if numjobs < d:
+            return -1
+        
+        inf = float('inf')
+        
+        # The final dp[daysleft][i] will equal the minimum job difficulty
+        # for starting with daysleft = the number of days remaining to
+        # complete the jobs and i = the index of the first job to be
+        # started.
+        dp = [[inf] * numjobs + [0] for daysleft in range(d + 1)]
+        
+        for daysleft in range(1, d + 1):
+            # The range here is from the first job to the last possible
+            # job given that one job must be left for each remaining day
+            # of work. This is defining daysleft = 1 to mean that there
+            # is one slot available in which all the jobs must be
+            # completed.
+            for i in range(numjobs - daysleft + 1):
+                daymax = 0
+                for j in range(i, numjobs - daysleft + 1):
+                    daymax = max(daymax, jobDifficulty[j])
+                    dp[daysleft][i] = min(dp[daysleft][i], dp[daysleft - 1][j + 1] + daymax)
+                    
+        return dp[d][0]
+
 ## LC: Maximum Area of a Piece of Cake after Horizontal and Vertical Cuts.
 ## https://leetcode.com/problems/maximum-area-of-a-piece-of-cake-after-horizontal-and-vertical-cuts/. Type: Arrays. Date: 5/06/21.
 # O(nlogn) - I sort.
