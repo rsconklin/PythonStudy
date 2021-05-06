@@ -1,3 +1,25 @@
+## LC: Maximum Area of a Piece of Cake after Horizontal and Vertical Cuts.
+## https://leetcode.com/problems/maximum-area-of-a-piece-of-cake-after-horizontal-and-vertical-cuts/. Type: Arrays. Date: 5/06/21.
+# O(nlogn) - I sort.
+class Solution:
+    def maxArea(self, h: int, w: int, horizontalCuts: List[int], verticalCuts: List[int]) -> int:
+        horizontalCuts.sort()
+        verticalCuts.sort()
+        
+        hGap = max(horizontalCuts[0], h - horizontalCuts[-1])
+        for i in range(1, len(horizontalCuts)):
+            dif = horizontalCuts[i] - horizontalCuts[i - 1]
+            if dif > hGap:
+                hGap = dif
+        
+        vGap = max(verticalCuts[0], w - verticalCuts[-1])
+        for i in range(1, len(verticalCuts)):
+            dif = verticalCuts[i] - verticalCuts[i - 1]
+            if dif > vGap:
+                vGap = dif
+        
+        return (hGap * vGap) % (10**9 + 7)
+
 ## LC: Robot Bounded in Circle. https://leetcode.com/problems/robot-bounded-in-circle/. Type: ?. Date: 5/06/21.
 # O(n)
 class Solution:
