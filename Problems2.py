@@ -1,3 +1,39 @@
+## LC: Robot Bounded in Circle. https://leetcode.com/problems/robot-bounded-in-circle/. Type: ?. Date: 5/06/21.
+# O(n)
+class Solution:
+    def isRobotBounded(self, instructions: str) -> bool:
+        '''The robot's trajectory is bounded if...
+        
+        1. The instructions lead it back to the start after one sequence.
+        2. The final direction of the robot is different from the initial
+            direction. (The robot's paths can be thought of vectors that
+            rotate and cancel each other after four cycles.)'''
+        
+        # Keep track of coordinates to see whether the robot arrives back
+        # at the origin. The directions correspond to how the coordinates
+        # should be incremented if the robot is facing that direction and
+        # moves forward. For example, the y-coordinate goes up by one and
+        # the x-coordinate does not change when the robot moves forward
+        # while facing north, hence (0, 1).
+        pos = [0, 0]
+        direction = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        dindex = 0
+        
+        # Iterate through the commands.
+        for i in instructions:
+            if i == 'G':
+                pos[0] += direction[dindex][0]
+                pos[1] += direction[dindex][1]
+            elif i == 'R':
+                dindex = (dindex + 1) % 4
+            elif i == 'L':
+                dindex = (dindex + 3) % 4
+        
+        if pos == [0, 0] or dindex != 0:
+            return True
+        
+        return False
+
 ## LC: LRU Cahe. https://leetcode.com/problems/lru-cache/. Type: Data Structures. Date: 5/05/21.
 # O(1) for put() and get(). Doubly-linked list.
 class Node:
