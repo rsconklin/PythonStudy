@@ -1,3 +1,30 @@
+## LC: Minimum Difficulty of a Job Schedule. https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/. Type: DP. Date: 5/07/21.
+# O(d * n)
+class Solution:
+    def minDifficulty(self, jobDifficulty: List[int], d: int) -> int:
+        
+        numjobs = len(jobDifficulty)
+        if numjobs < d:
+            return -1
+        
+        inf = float('inf')
+        dp = [inf] * numjobs
+        dp2 = [0] * numjobs        
+        
+        for d in range(d):
+            stack = []
+            for i in range(d, numjobs):
+                dp2[i] = dp[i - 1] + jobDifficulty[i] if i else jobDifficulty[i]
+                while stack and jobDifficulty[stack[-1]] < jobDifficulty[i]:
+                    j = stack.pop()
+                    dp2[i] = min(dp2[i], dp2[j] - jobDifficulty[j] + jobDifficulty[i])
+                if stack:
+                    dp2[i] = min(dp2[i], dp2[stack[-1]])
+                stack.append(i)
+            dp, dp2 = dp2, dp
+        
+        return dp[-1]
+
 ## LC: Minimum Difficulty of a Job Schedule. https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/. Type: Dynamic Programming. Date: 5/06/21.
 # O(n^2 * d)
 class Solution:
