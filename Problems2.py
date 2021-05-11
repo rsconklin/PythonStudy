@@ -1,3 +1,35 @@
+## LC: Trapping Rain Water. https://leetcode.com/problems/trapping-rain-water/. Type: Arrays. Date: 5/11/21.
+# O(n)
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        
+        water = 0
+        
+        n = len(height)
+        if n in (0, 1, 2):
+            return water
+        
+        l, r = 0, n - 1
+        left = height[l]
+        right = height[r]
+        
+        while l < r:
+            if left <= right:
+                if height[l] <= left:
+                    water += left - height[l]
+                    l += 1
+                elif height[l] > left:
+                    left = height[l]
+            else:
+                if height[r] <= right:
+                    water += right - height[r]
+                    r -= 1
+                elif height[r] > right:
+                    right = height[r]
+        
+        return water
+            
+
 ## LC: Minimum Difficulty of a Job Schedule. https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/. Type: DP. Date: 5/07/21.
 # O(d * n)
 class Solution:
