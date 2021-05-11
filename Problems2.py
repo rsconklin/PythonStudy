@@ -9,6 +9,42 @@ class Solution:
         if n in (0, 1, 2):
             return water
         
+        maxleft = 0
+        maxright = 0
+        left = [0] * n
+        right = [0] * n
+        
+        # Find the highest value to the left of index i.
+        for i in range(1, n - 1):
+            if height[i - 1] >= maxleft:
+                maxleft = height[i - 1]
+            left[i] = maxleft
+        
+        # Find the highest value to the right of index i.
+        for i in range(-2, -n, -1):
+            if height[i + 1] >= maxright:
+                maxright = height[i + 1]
+            right[i] = maxright
+        
+        # Add up the water values.
+        for i in range(1, n - 1):
+            vol = min(left[i], right[i]) - height[i]
+            if vol > 0:
+                water += vol
+        
+        return water
+
+## LC: Trapping Rain Water. https://leetcode.com/problems/trapping-rain-water/. Type: Arrays. Date: 5/11/21.
+# O(n)
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        
+        water = 0
+        
+        n = len(height)
+        if n in (0, 1, 2):
+            return water
+        
         l, r = 0, n - 1
         left = height[l]
         right = height[r]
