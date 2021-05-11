@@ -1,3 +1,39 @@
+## LC: Merge Two Sorted Lists. https://leetcode.com/problems/merge-two-sorted-lists/. Type: Linked Lists. Date: 5/11/21.
+# O(n)
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        
+        if not l1 and not l2:
+            return None
+        
+        head = ListNode()
+        node = head
+        
+        while l1 or l2:
+            if not l1:
+                node.next = l2
+                l2 = l2.next
+            elif not l2:
+                node.next = l1
+                l1 = l1.next
+            elif l1.val <= l2.val:
+                node.next = l1
+                l1 = l1.next
+            else:
+                node.next = l2
+                l2 = l2.next
+            node = node.next
+            
+        if head.next:
+            return head.next
+        else:
+            return None
+
 ## LC: Trapping Rain Water. https://leetcode.com/problems/trapping-rain-water/. Type: Arrays. Date: 5/11/21.
 # O(n)
 class Solution:
