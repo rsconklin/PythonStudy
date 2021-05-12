@@ -1,3 +1,20 @@
+## LC: Subtree of Another Tree. https://leetcode.com/problems/subtree-of-another-tree/. Type: Trees. Date: 5/12/21.
+#
+class Solution:
+    def isSubtree(self, root: TreeNode, subRoot: TreeNode) -> bool:
+        if self.isSame(root, subRoot):
+            return True
+        if not root:
+            return False
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+    
+    def isSame(self, root, subRoot):
+        if not (root and subRoot):
+            return root is subRoot
+        return (root.val == subRoot.val and 
+                self.isSame(root.left, subRoot.left) and 
+                self.isSame(root.right, subRoot.right))
+
 ## LC: Slowest Key. https://leetcode.com/problems/slowest-key/. Type: Arrays. Date: 5/12/21.
 # O(n)
 class Solution:
