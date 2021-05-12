@@ -1,3 +1,24 @@
+## LC: Maximum Units on a Truck. https://leetcode.com/problems/maximum-units-on-a-truck/. Type: Arrays. Date: 5/12/21.
+# O(nlogn)
+class Solution:
+    def maximumUnits(self, boxTypes: List[List[int]], truckSize: int) -> int:
+
+        n = len(boxTypes)
+        boxTypes.sort(key = lambda x: x[1], reverse = True)
+        maxunits = 0
+        
+        for box in boxTypes:
+            if truckSize == 0:
+                return maxunits
+            elif box[0] < truckSize:
+                maxunits += box[0] * box[1]
+                truckSize -= box[0]
+            else:
+                maxunits += truckSize * box[1]
+                truckSize = 0
+        
+        return maxunits
+
 ## LC: Merge Two Sorted Lists. https://leetcode.com/problems/merge-two-sorted-lists/. Type: Linked Lists. Date: 5/11/21.
 # O(n)
 # Definition for singly-linked list.
