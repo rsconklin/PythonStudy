@@ -1,3 +1,16 @@
+## LC: Slowest Key. https://leetcode.com/problems/slowest-key/. Type: Arrays. Date: 5/12/21.
+# O(n)
+class Solution:
+    def slowestKey(self, releaseTimes: List[int], keysPressed: str) -> str:
+        
+        key = (releaseTimes[0], 0)
+        for i in range(1, len(releaseTimes)):
+            diff = releaseTimes[i] - releaseTimes[i - 1]
+            if diff > key[0] or (diff == key[0] and keysPressed[i] > keysPressed[key[1]]):
+                key = (diff, i)
+
+        return keysPressed[key[1]]
+
 ## LC: Maximum Units on a Truck. https://leetcode.com/problems/maximum-units-on-a-truck/. Type: Arrays. Date: 5/12/21.
 # O(nlogn)
 class Solution:
