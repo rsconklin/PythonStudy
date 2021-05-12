@@ -1,5 +1,5 @@
 ## LC: Subtree of Another Tree. https://leetcode.com/problems/subtree-of-another-tree/. Type: Trees. Date: 5/12/21.
-#
+# O(k * n)
 class Solution:
     def isSubtree(self, root: TreeNode, subRoot: TreeNode) -> bool:
         if self.isSame(root, subRoot):
