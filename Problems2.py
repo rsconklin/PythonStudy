@@ -1,3 +1,23 @@
+## LC: Minimum Cost to Connect Sticks. https://leetcode.com/problems/minimum-cost-to-connect-sticks/. Type: Heaps. Date: 5/15/21.
+# O(nlogn)
+from heapq import *
+
+class Solution:
+    def connectSticks(self, sticks: List[int]) -> int:
+        
+        if len(sticks) in (0, 1):
+            return 0
+        
+        heapify(sticks)
+        
+        cost = 0
+        while len(sticks) > 1:
+            last = heappop(sticks) + heappop(sticks)
+            cost += last
+            heappush(sticks, last)
+        
+        return cost
+
 ## LC: K Closest Points to Origin. https://leetcode.com/problems/k-closest-points-to-origin/. Type: Arrays. Date: 5/15/21.
 # O(nlogn)
 class Solution:
