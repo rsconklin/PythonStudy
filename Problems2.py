@@ -1,5 +1,12 @@
 ## LC: K Closest Points to Origin. https://leetcode.com/problems/k-closest-points-to-origin/. Type: Arrays. Date: 5/15/21.
 # O(nlogn)
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        
+        points.sort(key = lambda x: x[0] * x[0] + x[1] * x[1])
+        return points[:k]
+
+# O(nlogn)
 from heapq import *
 
 class Solution:
