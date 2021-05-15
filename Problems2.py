@@ -1,3 +1,22 @@
+## LC: K Closest Points to Origin. https://leetcode.com/problems/k-closest-points-to-origin/. Type: Arrays. Date: 5/15/21.
+# O(nlogn)
+from heapq import *
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        
+        heap = []
+        
+        for point in points:
+            heappush(heap, ((point[0]**2 + point[1]**2)**(0.5), point))
+        
+        res = []
+        while k > 0:
+            res.append(heappop(heap)[1])
+            k -= 1
+        
+        return res
+
 ## LC: Subtree of Another Tree. https://leetcode.com/problems/subtree-of-another-tree/. Type: Trees. Date: 5/12/21.
 # O(k * n)
 class Solution:
