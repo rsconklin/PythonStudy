@@ -1,3 +1,24 @@
+## LC: Number of Provinces. https://leetcode.com/problems/number-of-provinces/. Type: Graphs. Date: 5/15/21.
+#
+class Solution:
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        
+        n = len(isConnected)
+        visited = set()
+        provinces = 0
+        
+        for i in range(n):
+            if i not in visited:
+                provinces += 1
+                tovisit = [i]
+                while tovisit:
+                    cur = tovisit.pop()
+                    if cur not in visited:
+                        visited.add(cur)
+                        tovisit = tovisit + [nei for nei, adj in enumerate(isConnected[cur]) if adj and nei not in visited]
+        
+        return provinces
+
 ## LC: Minimum Cost to Connect Sticks. https://leetcode.com/problems/minimum-cost-to-connect-sticks/. Type: Heaps. Date: 5/15/21.
 # O(nlogn)
 from heapq import *
