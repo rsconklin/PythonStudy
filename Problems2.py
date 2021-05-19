@@ -1,5 +1,5 @@
 ## LC: Number of Provinces. https://leetcode.com/problems/number-of-provinces/. Type: Graphs. Date: 5/15/21.
-#
+# O(n^2)
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
         
